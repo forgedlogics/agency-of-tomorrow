@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agency of Tomorrow</title>
+  <style>
+    :root { --ink:#10120f; --paper:#f4f1e9; --lime:#d9ff65; --muted:#6b6f66; --line:#d3d1c8; }
+    *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,sans-serif} main{max-width:1100px;margin:auto;padding:32px 20px 64px}.label{font:700 11px monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}h1{max-width:760px;font-size:clamp(44px,8vw,90px);line-height:.9;letter-spacing:-.07em;margin:12px 0 20px}h2{font-size:28px;letter-spacing:-.04em;margin:0 0 9px}.intro{max-width:620px;line-height:1.55;font-size:18px;color:var(--muted)}.grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:18px;margin-top:44px}.card{border:1px solid var(--line);padding:22px;background:#fbfaf6}.dark{background:var(--ink);color:white}.dark .label,.dark p{color:#c3c5bd}label{display:block;font:700 11px monospace;letter-spacing:.09em;text-transform:uppercase;margin:15px 0 7px}input,textarea,select{width:100%;font:16px Arial;padding:11px;border:1px solid var(--line);background:var(--paper)}textarea{min-height:100px;resize:vertical}button{margin-top:18px;border:0;background:var(--lime);padding:13px 16px;font-weight:700;cursor:pointer}button:hover{background:#c7ef53}.output{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}.output article{padding:14px;border:1px solid #3a3e37}.output h3{margin:8px 0;font-size:15px}.output p{font-size:14px;line-height:1.45;margin:0}.empty{padding:52px 0;color:#c3c5bd;font-size:18px;line-height:1.5}.footer{border-top:1px solid var(--line);margin-top:38px;padding-top:15px;color:var(--muted);font-size:13px}@media(max-width:700px){.grid,.output{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main>
+    <p class="label">Speculative marketing-agency model</p>
+    <h1>Agency of Tomorrow</h1>
+    <p class="intro">A simple simulation of how a future agency could turn one brief into strategy, creative direction, media planning, quality checks, and human approval.</p>
+    <div class="grid">
+      <form class="card" id="brief">
+        <p class="label">Run a simulation</p>
+        <h2>Campaign brief</h2>
+        <label for="type">Playbook</label><select id="type"><option value="launch">Collection launch</option><option value="rebrand">Brand refresh</option><option value="retention">Customer retention</option></select>
+        <label for="idea">What are you launching?</label><textarea id="idea" required placeholder="Example: A recycled-silver jewelry collection inspired by ocean erosion."></textarea>
+        <label for="audience">Who is it for?</label><input id="audience" required placeholder="Example: Design-conscious women, 22–34">
+        <label for="goal">Primary goal</label><select id="goal"><option>Build qualified interest</option><option>Drive product discovery</option><option>Grow email sign-ups</option><option>Convert returning visitors</option></select>
+        <button type="submit">Run agency simulation</button>
+      </form>
+      <section class="card dark" aria-live="polite">
+        <p class="label">Agency response</p>
+        <div id="empty" class="empty">Enter a brief to see how a six-role agency team would shape its first move.</div>
+        <div id="result" hidden><h2 id="title"></h2><div class="output"><article><span class="label">Strategy</span><h3>Find the tension</h3><p id="strategy"></p></article><article><span class="label">Creative</span><h3>Build the world</h3><p id="creative"></p></article><article><span class="label">Media</span><h3>Start focused</h3><p id="media"></p></article><article><span class="label">Success</span><h3>Measure one signal</h3><p id="success"></p></article><article><span class="label">Quality</span><h3>Check the risk</h3><p id="risk"></p></article><article><span class="label">Human approval</span><h3>Keep judgment human</h3><p>Approve the campaign territory, first creative route, and final public claims before launch.</p></article></div></div>
+      </section>
+    </div>
+    <p class="footer">Built as a forgedlogics concept: AI supports the work; people own the point of view.</p>
+  </main>
+  <script>
+    const playbooks={launch:{media:'Pair short-form discovery with an owned email-capture moment.',success:'Email or waitlist capture rate.',risk:'Do not let product details overpower the collection idea.'},rebrand:{media:'Use founder-led storytelling before paid amplification.',success:'Returning-visitor engagement.',risk:'Keep one familiar brand cue so existing customers recognize the change.'},retention:{media:'Start with segmented email and retargeting based on prior product interest.',success:'Repeat purchase or reactivation rate.',risk:'Do not use a discount as the only reason to return.'}};
+    document.getElementById('brief').addEventListener('submit',event=>{event.preventDefault();const idea=document.getElementById('idea').value.trim(),audience=document.getElementById('audience').value.trim(),goal=document.getElementById('goal').value,playbook=playbooks[document.getElementById('type').value];document.getElementById('empty').hidden=true;document.getElementById('result').hidden=false;document.getElementById('title').textContent=idea;document.getElementById('strategy').textContent=`Give ${audience} a clear reason to care: position this as a point of view, not simply a product release.`;document.getElementById('creative').textContent='Develop one recognizable visual world and three repeatable content expressions around the core material or insight.';document.getElementById('media').textContent=playbook.media;document.getElementById('success').textContent=`Primary KPI: ${playbook.success} Test whether the work can ${goal.toLowerCase()} before expanding.`;document.getElementById('risk').textContent=playbook.risk;});
+  </script>
+</body>
+</html>

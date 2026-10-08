@@ -27,6 +27,18 @@ This is not a claim that AI replaces marketers. It is a product concept for maki
 
 ## Run locally
 
+### Simplest option: browser
+
+Open `index.html` in any browser. No installation is required.
+
+### Terminal simulation
+
+```bash
+python3 simulate_agency.py
+```
+
+### Full prototype
+
 ```bash
 npm install
 npm run dev
