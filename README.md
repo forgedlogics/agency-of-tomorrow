@@ -24,6 +24,25 @@ This is not a claim that AI replaces marketers or that it should make unaccounta
 - Next.js / Vinext
 - TypeScript
 - CSS
+- Python / Streamlit
+
+## Python agents
+
+The reusable Python workflow lives in `agencyos/`. It contains seven deterministic, explainable agents and an `AgencyOS` orchestrator. It deliberately does **not** connect to an ad account, CRM, or customer data: the first version is safe to inspect and test locally.
+
+Run the agents directly from Terminal:
+
+```bash
+python3 run_agency.py
+```
+
+Try the human-review path:
+
+```bash
+python3 run_agency.py --claim-review
+```
+
+Both commands print a JSON decision record showing each agent's action, outputs, and whether launch needs a human owner.
 
 ## Run the Python app
 

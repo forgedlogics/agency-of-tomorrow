@@ -5,23 +5,12 @@ Run locally with:
     streamlit run app.py
 """
 
-import time
-
 import streamlit as st
+
+from agencyos import AgencyOS, CampaignBrief
 
 
 st.set_page_config(page_title="AgencyOS", page_icon="◉", layout="wide")
-
-AGENTS = [
-    ("Brand Memory", "Assembles the approved voice, product, audience, and prior learning."),
-    ("Market Intelligence", "Turns category, competitor, and customer signals into a focused opportunity."),
-    ("Campaign Strategist", "Sets the audience tension, message, channel roles, and success measure."),
-    ("Creative Flywheel", "Builds on-brand campaign routes, copy, and adaptable creative variants."),
-    ("Media Autopilot", "Prepares bounded tests, pacing rules, and a measurement plan."),
-    ("Opportunity Hunter", "Designs approved high-intent follow-up and client handoff paths."),
-    ("Governance Layer", "Checks claims, privacy, spend, brand safety, and human-approval rules."),
-]
-
 
 def simulated_metrics(autonomy: int, review_needed: bool) -> dict[str, str]:
     cycle_minutes = max(30, 94 - round(autonomy * 0.6))
@@ -74,21 +63,25 @@ metric_columns[2].metric("Decision-ready outputs", metrics["outputs"])
 metric_columns[3].metric("Human reviews", metrics["reviews"])
 
 if st.button("Start AgencyOS run", type="primary", use_container_width=True):
-    st.session_state["run_complete"] = False
-    st.session_state["review_needed"] = review_needed
+    brief = CampaignBrief(
+        brand=brand,
+        goal=goal,
+        objective=objective,
+        needs_claim_review=review_needed,
+    )
+    campaign_run = AgencyOS().run(brief)
+    st.session_state["campaign_run"] = campaign_run
     with st.status("AgencyOS is coordinating the campaign", expanded=True) as status:
-        for number, (agent, action) in enumerate(AGENTS, start=1):
-            if agent == "Governance Layer" and review_needed:
-                st.warning(f"{number:02d} · {agent} — Human approval requested before launch.")
+        for number, event in enumerate(campaign_run.events, start=1):
+            if event.status == "review_required":
+                st.warning(f"{number:02d} · {event.agent} — {event.output}")
             else:
-                st.write(f"{number:02d} · **{agent}** — {action}")
-            time.sleep(0.32)
-        label = "Campaign staged for human approval" if review_needed else "Bounded launch route ready"
+                st.write(f"{number:02d} · **{event.agent}** — {event.action}")
+        label = "Campaign staged for human approval" if campaign_run.requires_human_review else "Bounded launch route ready"
         status.update(label=label, state="complete", expanded=False)
-    st.session_state["run_complete"] = True
 
-if st.session_state.get("run_complete"):
-    if st.session_state.get("review_needed"):
+if campaign_run := st.session_state.get("campaign_run"):
+    if campaign_run.requires_human_review:
         st.warning("Human decision requested before launch")
         st.write(
             "The system completed routine research, strategy, production, and planning, "
@@ -100,12 +93,15 @@ if st.session_state.get("run_complete"):
             f"**{brand}** has a measured route to **{objective.lower()}**. "
             "The simulation would keep monitoring routine signals and write learning back to Brand Memory."
         )
+    with st.expander("View the Python agent decision record"):
+        st.json(campaign_run.as_dict())
 
 st.divider()
 st.subheader("What each system owns")
-for start in range(0, len(AGENTS), 3):
+agent_cards = [(event.agent, event.action) for event in AgencyOS().run(CampaignBrief("Example", "Example", "Example")).events]
+for start in range(0, len(agent_cards), 3):
     columns = st.columns(3)
-    for column, (agent, action) in zip(columns, AGENTS[start : start + 3]):
+    for column, (agent, action) in zip(columns, agent_cards[start : start + 3]):
         with column:
             st.markdown(f"**{agent}**")
             st.caption(action)
