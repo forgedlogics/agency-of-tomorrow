@@ -6,7 +6,7 @@ AgencyOS is my portfolio concept for an AI-powered marketing agency. It helps an
 
 You do not need to understand code to view the project.
 
-- **View the website:** https://forgedlogics.github.io/agency-of-tomorrow/
+- **View the live website:** [Open AgencyOS](https://forgedlogics.github.io/agency-of-tomorrow/)
 - **Read the case study:** [CASE_STUDY.md](CASE_STUDY.md)
 
 ## The important files
