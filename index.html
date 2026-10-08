@@ -3,38 +3,84 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agency of Tomorrow</title>
+  <meta name="description" content="An interactive, illustrative model of a future marketing agency.">
+  <title>Agency of Tomorrow — Strategic Simulator</title>
   <style>
-    :root { --ink:#10120f; --paper:#f4f1e9; --lime:#d9ff65; --muted:#6b6f66; --line:#d3d1c8; }
-    *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,sans-serif} main{max-width:1100px;margin:auto;padding:32px 20px 64px}.label{font:700 11px monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}h1{max-width:760px;font-size:clamp(44px,8vw,90px);line-height:.9;letter-spacing:-.07em;margin:12px 0 20px}h2{font-size:28px;letter-spacing:-.04em;margin:0 0 9px}.intro{max-width:620px;line-height:1.55;font-size:18px;color:var(--muted)}.grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:18px;margin-top:44px}.card{border:1px solid var(--line);padding:22px;background:#fbfaf6}.dark{background:var(--ink);color:white}.dark .label,.dark p{color:#c3c5bd}label{display:block;font:700 11px monospace;letter-spacing:.09em;text-transform:uppercase;margin:15px 0 7px}input,textarea,select{width:100%;font:16px Arial;padding:11px;border:1px solid var(--line);background:var(--paper)}textarea{min-height:100px;resize:vertical}button{margin-top:18px;border:0;background:var(--lime);padding:13px 16px;font-weight:700;cursor:pointer}button:hover{background:#c7ef53}.output{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}.output article{padding:14px;border:1px solid #3a3e37}.output h3{margin:8px 0;font-size:15px}.output p{font-size:14px;line-height:1.45;margin:0}.empty{padding:52px 0;color:#c3c5bd;font-size:18px;line-height:1.5}.footer{border-top:1px solid var(--line);margin-top:38px;padding-top:15px;color:var(--muted);font-size:13px}@media(max-width:700px){.grid,.output{grid-template-columns:1fr}}
+    :root{--ink:#11130f;--paper:#f3f1e9;--card:#fbfaf6;--line:#d8d6ce;--acid:#d8ff68;--violet:#9c86ff;--green:#49d18b;--orange:#ff9c61;--muted:#697066}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}main{max-width:1260px;margin:auto;padding:28px 22px 66px}.top{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:28px}.kicker,.mini{font:700 11px ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}h1{font-size:clamp(48px,7vw,92px);letter-spacing:-.075em;line-height:.87;margin:12px 0 17px;max-width:850px}.lede{font-size:18px;line-height:1.55;max-width:690px;color:var(--muted);margin:0}.status{border:1px solid var(--line);background:var(--card);padding:13px 16px;white-space:nowrap;font-size:13px}.dot{display:inline-block;width:8px;height:8px;border-radius:100%;background:var(--green);margin-right:7px}.presets{display:flex;gap:8px;flex-wrap:wrap;margin:25px 0}.preset{border:1px solid var(--line);background:transparent;padding:10px 13px;font-weight:700;cursor:pointer}.preset.active,.preset:hover{background:var(--ink);color:#fff;border-color:var(--ink)}.workspace{display:grid;grid-template-columns:360px 1fr;gap:18px}.controls,.results,.blueprint{border:1px solid var(--line);background:var(--card);padding:22px}.controls h2,.results h2,.blueprint h2{font-size:25px;letter-spacing:-.04em;margin:4px 0 8px}.help{margin:0 0 22px;color:var(--muted);font-size:14px;line-height:1.45}.control{border-top:1px solid var(--line);padding:18px 0}.control:last-child{padding-bottom:0}.control label{display:flex;justify-content:space-between;font-size:14px;font-weight:700;margin-bottom:10px}.value{color:var(--violet)}input[type=range]{appearance:none;width:100%;height:5px;background:var(--line);outline:none}input[type=range]::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ink);cursor:pointer}.options{display:grid;grid-template-columns:1fr 1fr;gap:7px}.option{border:1px solid var(--line);padding:10px;font-size:13px;cursor:pointer}.option input{accent-color:var(--ink);margin-right:5px}.results{min-width:0}.result-head{display:flex;justify-content:space-between;gap:20px;align-items:end}.result-head p{margin:0;color:var(--muted);font-size:14px}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}.metric{background:var(--ink);color:white;padding:16px;min-height:124px}.metric:nth-child(2){background:#2a272f}.metric:nth-child(3){background:#18352a}.metric:nth-child(4){background:#4a2d22}.metric strong{display:block;font-size:34px;letter-spacing:-.06em;margin:15px 0 3px}.metric small{color:#d3d5cf;line-height:1.3;display:block}.insight{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;border-top:1px solid var(--line);padding-top:18px}.insight-card{padding:18px;background:#e9e7df}.insight-card h3{margin:8px 0;font-size:19px;letter-spacing:-.03em}.insight-card p{color:var(--muted);line-height:1.5;font-size:14px;margin:0}.risk{background:#f9e3d7}.blueprint{grid-column:1/-1}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:20px}.node{border:1px solid var(--line);min-height:116px;padding:13px;background:#f7f6f1}.node b{font-size:14px}.node p{font-size:12px;line-height:1.4;color:var(--muted);margin:9px 0}.node.active{border-color:var(--violet);box-shadow:inset 0 0 0 1px var(--violet)}.footnote{margin-top:22px;color:var(--muted);font-size:12px;line-height:1.5}@media(max-width:900px){.workspace{grid-template-columns:1fr}.metric-grid{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(3,1fr)}}@media(max-width:580px){main{padding:20px 14px}.top,.result-head{display:block}.status{display:inline-block;margin-top:18px}.metric-grid,.insight,.flow{grid-template-columns:1fr}.workspace{gap:12px}.controls,.results,.blueprint{padding:17px}}
   </style>
 </head>
 <body>
-  <main>
-    <p class="label">Speculative marketing-agency model</p>
-    <h1>Agency of Tomorrow</h1>
-    <p class="intro">A simple simulation of how a future agency could turn one brief into strategy, creative direction, media planning, quality checks, and human approval.</p>
-    <div class="grid">
-      <form class="card" id="brief">
-        <p class="label">Run a simulation</p>
-        <h2>Campaign brief</h2>
-        <label for="type">Playbook</label><select id="type"><option value="launch">Collection launch</option><option value="rebrand">Brand refresh</option><option value="retention">Customer retention</option></select>
-        <label for="idea">What are you launching?</label><textarea id="idea" required placeholder="Example: A recycled-silver jewelry collection inspired by ocean erosion."></textarea>
-        <label for="audience">Who is it for?</label><input id="audience" required placeholder="Example: Design-conscious women, 22–34">
-        <label for="goal">Primary goal</label><select id="goal"><option>Build qualified interest</option><option>Drive product discovery</option><option>Grow email sign-ups</option><option>Convert returning visitors</option></select>
-        <button type="submit">Run agency simulation</button>
-      </form>
-      <section class="card dark" aria-live="polite">
-        <p class="label">Agency response</p>
-        <div id="empty" class="empty">Enter a brief to see how a six-role agency team would shape its first move.</div>
-        <div id="result" hidden><h2 id="title"></h2><div class="output"><article><span class="label">Strategy</span><h3>Find the tension</h3><p id="strategy"></p></article><article><span class="label">Creative</span><h3>Build the world</h3><p id="creative"></p></article><article><span class="label">Media</span><h3>Start focused</h3><p id="media"></p></article><article><span class="label">Success</span><h3>Measure one signal</h3><p id="success"></p></article><article><span class="label">Quality</span><h3>Check the risk</h3><p id="risk"></p></article><article><span class="label">Human approval</span><h3>Keep judgment human</h3><p>Approve the campaign territory, first creative route, and final public claims before launch.</p></article></div></div>
-      </section>
-    </div>
-    <p class="footer">Built as a forgedlogics concept: AI supports the work; people own the point of view.</p>
-  </main>
-  <script>
-    const playbooks={launch:{media:'Pair short-form discovery with an owned email-capture moment.',success:'Email or waitlist capture rate.',risk:'Do not let product details overpower the collection idea.'},rebrand:{media:'Use founder-led storytelling before paid amplification.',success:'Returning-visitor engagement.',risk:'Keep one familiar brand cue so existing customers recognize the change.'},retention:{media:'Start with segmented email and retargeting based on prior product interest.',success:'Repeat purchase or reactivation rate.',risk:'Do not use a discount as the only reason to return.'}};
-    document.getElementById('brief').addEventListener('submit',event=>{event.preventDefault();const idea=document.getElementById('idea').value.trim(),audience=document.getElementById('audience').value.trim(),goal=document.getElementById('goal').value,playbook=playbooks[document.getElementById('type').value];document.getElementById('empty').hidden=true;document.getElementById('result').hidden=false;document.getElementById('title').textContent=idea;document.getElementById('strategy').textContent=`Give ${audience} a clear reason to care: position this as a point of view, not simply a product release.`;document.getElementById('creative').textContent='Develop one recognizable visual world and three repeatable content expressions around the core material or insight.';document.getElementById('media').textContent=playbook.media;document.getElementById('success').textContent=`Primary KPI: ${playbook.success} Test whether the work can ${goal.toLowerCase()} before expanding.`;document.getElementById('risk').textContent=playbook.risk;});
-  </script>
+<main>
+  <header class="top">
+    <div><p class="kicker">Interactive operating-model prototype</p><h1>Agency of Tomorrow</h1><p class="lede">Explore how automation, pricing, and team structure could reshape an agency’s economics, speed, and human role.</p></div>
+    <div class="status"><span class="dot"></span>Illustrative model · v2</div>
+  </header>
+
+  <div class="presets" aria-label="Scenario presets">
+    <button class="preset" data-preset="legacy">Traditional legacy agency</button>
+    <button class="preset active" data-preset="hybrid">Hybrid agency</button>
+    <button class="preset" data-preset="autonomous">Autonomous agency 2030</button>
+  </div>
+
+  <section class="workspace">
+    <aside class="controls">
+      <p class="mini">Control panel</p><h2>Shape the model</h2><p class="help">Move the inputs to test a future-agency setup. The outputs are directional estimates for discussion, not financial forecasts.</p>
+      <div class="control"><label for="ai">AI orchestration <span class="value" id="aiValue">55%</span></label><input id="ai" type="range" min="0" max="100" value="55"></div>
+      <div class="control"><label for="creative">Creative automation <span class="value" id="creativeValue">45%</span></label><input id="creative" type="range" min="0" max="100" value="45"></div>
+      <div class="control"><label for="media">Media optimization <span class="value" id="mediaValue">50%</span></label><input id="media" type="range" min="0" max="100" value="50"></div>
+      <div class="control"><label>Pricing model</label><div class="options"><label class="option"><input type="radio" name="pricing" value="retainer">Retainer</label><label class="option"><input type="radio" name="pricing" value="project">Fixed project</label><label class="option"><input type="radio" name="pricing" value="outcome" checked>Outcome-based</label></div></div>
+      <div class="control"><label>Team structure</label><div class="options"><label class="option"><input type="radio" name="team" value="silos">Siloed teams</label><label class="option"><input type="radio" name="team" value="pods" checked>Cross-functional pods</label></div></div>
+    </aside>
+
+    <section class="results">
+      <div class="result-head"><div><p class="mini">Live agency health</p><h2 id="modelName">Hybrid agency</h2></div><p id="summary">Human-led strategy with AI-supported execution.</p></div>
+      <div class="metric-grid">
+        <article class="metric"><span class="mini">Profit margin</span><strong id="margin">31%</strong><small>Illustrative operating margin</small></article>
+        <article class="metric"><span class="mini">Time to market</span><strong id="speed">9d</strong><small>Brief to first campaign route</small></article>
+        <article class="metric"><span class="mini">Client retention</span><strong id="retention">78%</strong><small>Forecasted relationship health</small></article>
+        <article class="metric"><span class="mini">Burnout risk</span><strong id="burnout">Medium</strong><small>Pressure from handoffs and rework</small></article>
+      </div>
+      <div class="insight">
+        <article class="insight-card"><p class="mini">Strategic insight</p><h3 id="insightTitle">The leverage is in orchestration.</h3><p id="insightText">AI can reduce repetitive execution, but the agency still wins through strategic taste and a clear operating rhythm.</p></article>
+        <article class="insight-card risk"><p class="mini">Watch-out</p><h3 id="riskTitle">Protect the approval gate.</h3><p id="riskText">As automation rises, clearly assign who owns brand safety, claims, and the final creative decision.</p></article>
+      </div>
+    </section>
+
+    <section class="blueprint">
+      <p class="mini">Live workflow blueprint</p><h2>How work routes through this agency</h2>
+      <div class="flow">
+        <article class="node active"><b>01 · Signal intake</b><p>Research and audience signals enter a shared brief.</p></article>
+        <article class="node active"><b>02 · Strategy pod</b><p>Humans frame the problem; agents generate scenarios.</p></article>
+        <article class="node"><b>03 · Creative system</b><p>Concepts and variants are made from approved direction.</p></article>
+        <article class="node"><b>04 · Media loop</b><p>Budget and channel tests adapt to observed performance.</p></article>
+        <article class="node active"><b>05 · Human approval</b><p>People own taste, risk, and the final public decision.</p></article>
+      </div>
+      <p class="footnote">This simulator uses transparent, hand-authored rules to create a conversation starter. It does not predict a real agency’s financial performance or replace strategic analysis.</p>
+    </section>
+  </section>
+</main>
+<script>
+const inputs={ai:document.querySelector('#ai'),creative:document.querySelector('#creative'),media:document.querySelector('#media')};
+const presets={legacy:{ai:12,creative:10,media:20,pricing:'retainer',team:'silos',name:'Traditional legacy agency'},hybrid:{ai:55,creative:45,media:50,pricing:'outcome',team:'pods',name:'Hybrid agency'},autonomous:{ai:90,creative:82,media:88,pricing:'outcome',team:'pods',name:'Autonomous agency 2030'}};
+function selected(name){return document.querySelector('input[name="'+name+'"]:checked').value}
+function render(){
+  const ai=+inputs.ai.value,creative=+inputs.creative.value,media=+inputs.media.value,pricing=selected('pricing'),team=selected('team');
+  document.querySelector('#aiValue').textContent=ai+'%';document.querySelector('#creativeValue').textContent=creative+'%';document.querySelector('#mediaValue').textContent=media+'%';
+  const automation=(ai+creative+media)/3,priceBoost=pricing==='outcome'?6:pricing==='project'?2:0,podBoost=team==='pods'?5:0;
+  const margin=Math.round(20+automation*.16+priceBoost+podBoost),speed=Math.max(2,Math.round(19-automation*.14-(team==='pods'?2:0))),retention=Math.min(94,Math.round(59+media*.13+ai*.07+podBoost));
+  const burnout=automation>78&&team==='silos'?'High':automation>58?'Managed':'Medium';
+  document.querySelector('#margin').textContent=margin+'%';document.querySelector('#speed').textContent=speed+'d';document.querySelector('#retention').textContent=retention+'%';document.querySelector('#burnout').textContent=burnout;
+  const title=automation>75?'The system is becoming the product.':automation>40?'The leverage is in orchestration.':'The team still carries the operating load.';
+  const text=automation>75?'With strong automation, differentiated value shifts from delivery volume to the agency’s proprietary workflow, data discipline, and creative judgment.':automation>40?'AI removes repeatable coordination work, allowing cross-functional pods to spend more time on the customer problem and creative choice.':'This setup depends heavily on manual handoffs. Define one shared brief and a small automation loop before scaling headcount.';
+  document.querySelector('#insightTitle').textContent=title;document.querySelector('#insightText').textContent=text;
+  document.querySelector('#riskTitle').textContent=pricing==='outcome'?'Define the outcome before selling it.':'Protect the approval gate.';
+  document.querySelector('#riskText').textContent=pricing==='outcome'?'Outcome pricing needs a clear baseline, shared measurement, and a fair definition of what the agency controls.':'As automation rises, clearly assign who owns brand safety, claims, and the final creative decision.';
+  document.querySelector('#summary').textContent=team==='pods'?'Cross-functional pods combine strategy, creative, media, and data around one shared outcome.':'Specialist departments own separate stages of the work, creating more handoffs.';
+  document.querySelectorAll('.node').forEach((node,i)=>node.classList.toggle('active',i===4||automation>35&&i<2||automation>65&&i===2||media>60&&i===3));
+}
+Object.values(inputs).forEach(input=>input.addEventListener('input',render));document.querySelectorAll('input[type=radio]').forEach(input=>input.addEventListener('change',render));
+document.querySelectorAll('.preset').forEach(button=>button.addEventListener('click',()=>{const p=presets[button.dataset.preset];Object.entries(inputs).forEach(([key,input])=>input.value=p[key]);document.querySelector('input[name="pricing"][value="'+p.pricing+'"]').checked=true;document.querySelector('input[name="team"][value="'+p.team+'"]').checked=true;document.querySelector('#modelName').textContent=p.name;document.querySelectorAll('.preset').forEach(item=>item.classList.toggle('active',item===button));render()}));
+render();
+</script>
 </body>
 </html>
