@@ -2,6 +2,16 @@
 
 A simple, interactive marketing prototype that turns a campaign brief into an **Invest**, **Test First**, or **Pause** recommendation and a first campaign launch kit.
 
+## The agency model
+
+Campaign Launch Lab is an AI-powered agency concept for emerging consumer brands. Its productized offer, the **Campaign Test Sprint**, takes a client from campaign qualification to research, a decision, launch materials, and an ongoing three-agent growth engine:
+
+- **Content Flywheel:** creates, tests, and learns from content.
+- **Amplification Engine:** turns winning messages into bounded paid distribution.
+- **Opportunity Hunter:** routes interest into fast, helpful follow-up and human handoff.
+
+The agency is designed to automate repetitive work, not to remove accountability for evidence, public claims, spend, or creative judgment.
+
 Read the portfolio-ready [Campaign Launch Lab case study](CASE_STUDY.md).
 
 ## The idea
