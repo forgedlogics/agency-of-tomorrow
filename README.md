@@ -26,7 +26,8 @@ You do not need to understand code to view the project.
 2. The system shows the research and planning steps.
 3. It recommends **Invest**, **Test First**, or **Pause**.
 4. It creates a first campaign direction, social-post idea, and small test plan.
-5. After approval, the growth engine helps content, promotion, and lead follow-up work together.
+5. It prepares an A/B test with two message variations and one defined success metric.
+6. After approval, the growth engine helps content, promotion, and lead follow-up work together.
 
 ## Optional Python command
 

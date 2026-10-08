@@ -29,7 +29,7 @@ The workflow is designed to answer one clear question:
 1. **Brief Organizer** — turns the request into a focused campaign question.
 2. **Research Desk** — records the market signal and attached source; it flags unsupported factual claims.
 3. **Campaign Planner** — creates an audience focus, campaign hypothesis, and measurable goal.
-4. **Test Designer** — creates a small campaign test before larger investment.
+4. **A/B Test Agent** — creates two controlled message variations and one success metric before larger investment.
 5. **Approval Gate** — recommends **Invest**, **Test First**, or **Pause** and identifies the next human decision.
 
 ## Why it is interactive marketing
