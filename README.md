@@ -25,7 +25,16 @@ This is not a claim that AI replaces marketers. It is a product concept for maki
 - TypeScript
 - CSS
 
-## Run locally
+## Run the Python app
+
+The primary interactive simulator is written in Python with Streamlit.
+
+```bash
+python3 -m pip install -r requirements.txt
+streamlit run app.py
+```
+
+## Static preview
 
 ### Simplest option: browser
 
