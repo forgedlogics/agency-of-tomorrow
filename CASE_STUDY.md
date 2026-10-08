@@ -1,10 +1,10 @@
-# Campaign Launch Lab
+# AgencyOS — The Agency of Tomorrow
 
-## An interactive marketing concept for moving from campaign brief to test-ready launch
+## An AI-powered marketing-agency portfolio concept for moving from campaign brief to test-ready launch
 
 **Project type:** Independent product and marketing-operations prototype  
 **Role:** Research, campaign strategy, interaction design, and Python workflow development  
-**Status:** Exploratory prototype — simulated workflow; no live ad accounts or customer data
+**Status:** Professional portfolio concept — simulated workflow; no live ad accounts or customer data
 
 ## The problem
 
@@ -18,7 +18,7 @@ Those steps are necessary, but they can be slow, fragmented, and difficult for a
 
 ## The concept
 
-Campaign Launch Lab is a proposed interactive agency workflow. A user enters a brand, campaign goal, audience, early market signal, and optional research source. Specialized Python agents create a visible decision record instead of operating as a black box.
+AgencyOS is a proposed AI-powered agency model. Its Campaign Launch Lab lets a user enter a brand, campaign goal, audience, early market signal, and optional research source. Specialized Python agents create a visible decision record instead of operating as a black box.
 
 The workflow is designed to answer one clear question:
 

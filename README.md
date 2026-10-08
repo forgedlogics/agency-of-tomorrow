@@ -1,6 +1,6 @@
-# Campaign Launch Lab
+# AgencyOS — The Agency of Tomorrow
 
-A simple, interactive marketing prototype that turns a campaign brief into an **Invest**, **Test First**, or **Pause** recommendation and a first campaign launch kit.
+A professional portfolio concept for an AI-powered marketing agency. AgencyOS uses its Campaign Launch Lab to turn a campaign brief into an **Invest**, **Test First**, or **Pause** recommendation and a first campaign launch kit.
 
 ## The agency model
 
@@ -11,6 +11,14 @@ Campaign Launch Lab is an AI-powered agency concept for emerging consumer brands
 - **Opportunity Hunter:** routes interest into fast, helpful follow-up and human handoff.
 
 The agency is designed to automate repetitive work, not to remove accountability for evidence, public claims, spend, or creative judgment.
+
+## Contact
+
+For portfolio, collaboration, or early-stage project inquiries: [nikunj.verma@live.com](mailto:nikunj.verma@live.com)
+
+## Scope and transparency
+
+AgencyOS is a professional portfolio concept. It demonstrates marketing strategy, AI workflow design, and interactive campaign planning; it does not claim active client work, live ad-account access, legal-business registration, or guaranteed campaign results.
 
 Read the portfolio-ready [Campaign Launch Lab case study](CASE_STUDY.md).
 
