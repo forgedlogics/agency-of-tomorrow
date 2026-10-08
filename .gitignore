@@ -6,3 +6,15 @@ dist/
 .env*
 __pycache__/
 *.py[cod]
+.openai/
+.vinext/
+.vite/
+db/
+drizzle/
+drizzle.config.ts
+examples/
+tests/
+public/file.svg
+public/globe.svg
+public/og.png
+public/window.svg
