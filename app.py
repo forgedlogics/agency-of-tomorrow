@@ -1,100 +1,113 @@
-"""Agency of Tomorrow: a Python-powered autonomous-agency simulator.
+"""AgencyOS: a Python Streamlit simulation of an autonomous agency workflow.
 
-Run locally with: streamlit run app.py
+Run locally with:
+    python3 -m pip install -r requirements.txt
+    streamlit run app.py
 """
 
 import time
 
 import streamlit as st
 
-st.set_page_config(page_title="Agency / 2030", page_icon="●", layout="wide")
 
-PRESETS = {
-    "Hybrid agency": {"orchestration": 70, "creative": 65, "media": 70},
-    "Autonomous agency 2030": {"orchestration": 92, "creative": 88, "media": 90},
-    "Traditional agency": {"orchestration": 15, "creative": 20, "media": 25},
-}
+st.set_page_config(page_title="AgencyOS", page_icon="◉", layout="wide")
 
-DEPARTMENTS = [
-    ("Signal Desk", "Researches customer, culture, and category signals."),
-    ("Strategy Pod", "Builds a decision-ready campaign route."),
-    ("Creative Studio", "Produces concepts, copy, and adaptable creative variants."),
-    ("Media Room", "Plans channels, allocation, and measurement."),
-    ("QA Exceptions", "Escalates only policy, safety, or accountability exceptions."),
+AGENTS = [
+    ("Brand Memory", "Assembles the approved voice, product, audience, and prior learning."),
+    ("Market Intelligence", "Turns category, competitor, and customer signals into a focused opportunity."),
+    ("Campaign Strategist", "Sets the audience tension, message, channel roles, and success measure."),
+    ("Creative Flywheel", "Builds on-brand campaign routes, copy, and adaptable creative variants."),
+    ("Media Autopilot", "Prepares bounded tests, pacing rules, and a measurement plan."),
+    ("Opportunity Hunter", "Designs approved high-intent follow-up and client handoff paths."),
+    ("Governance Layer", "Checks claims, privacy, spend, brand safety, and human-approval rules."),
 ]
 
 
-def model_outputs(orchestration: int, creative: int, media: int) -> dict[str, str]:
-    automation = (orchestration + creative + media) / 3
-    minutes = max(18, round(95 - automation * 0.58))
+def simulated_metrics(autonomy: int, review_needed: bool) -> dict[str, str]:
+    cycle_minutes = max(30, 94 - round(autonomy * 0.6))
+    if review_needed:
+        cycle_minutes += 13
     return {
-        "manual_time": "5 business days",
-        "autonomous_time": f"{minutes} minutes",
-        "deliverables": str(round(8 + creative * 0.32 + orchestration * 0.14)),
-        "retention": f"{round(60 + media * 0.22 + orchestration * 0.1)}%",
+        "traditional": "5 business days",
+        "autonomous": f"{cycle_minutes} minutes",
+        "outputs": str(round(18 + autonomy * 0.23)),
+        "reviews": "1" if review_needed else "0",
     }
 
 
-st.title("Agency / 2030")
-st.caption("Public prototype · autonomous advertising-agency operating model")
+st.title("AgencyOS")
+st.caption("A transparent, autonomous marketing-agency operating model · Demo data only")
 st.write(
-    "Explore how an AI-operated agency could route a brief through research, "
-    "strategy, creative production, media planning, and launch with human review "
-    "only when an exception needs accountability."
+    "A client brief moves through seven specialist agents that share one governed brand memory. "
+    "Routine work moves autonomously; consequential decisions are escalated to a responsible person."
 )
 
 with st.sidebar:
-    st.header("Agency controls")
-    preset = st.selectbox("Operating model", list(PRESETS), index=1)
-    defaults = PRESETS[preset]
-    orchestration = st.slider("AI orchestration", 0, 100, defaults["orchestration"])
-    creative = st.slider("Creative automation", 0, 100, defaults["creative"])
-    media = st.slider("Media optimization", 0, 100, defaults["media"])
-    st.caption("Outputs are illustrative scenario assumptions, not performance guarantees.")
+    st.header("Operating rules")
+    autonomy = st.slider("Autonomy level", 0, 100, 86)
+    st.caption("Higher autonomy speeds routine work. It does not remove approval rules.")
+    st.markdown("**Always escalate**")
+    st.caption("New public claims · material spend · privacy risk · brand safety · cultural judgment")
 
-metrics = model_outputs(orchestration, creative, media)
-first, second, third, fourth = st.columns(4)
-first.metric("Traditional campaign cycle", metrics["manual_time"])
-second.metric("Simulated autonomous cycle", metrics["autonomous_time"])
-third.metric("Simulated deliverables", metrics["deliverables"])
-fourth.metric("Illustrative retention health", metrics["retention"])
-
-st.divider()
-st.subheader("Route a client brief")
+st.subheader("Client launchpad")
 left, right = st.columns(2)
 with left:
     brand = st.text_input("Brand or project", "Aster Jewelry — Tide Collection")
     objective = st.selectbox(
         "Primary outcome",
-        ["Generate qualified interest", "Build brand awareness", "Increase product discovery", "Drive repeat purchase"],
+        ["Generate qualified interest", "Drive product discovery", "Grow an owned audience", "Increase repeat purchase"],
     )
 with right:
     goal = st.text_area(
         "What needs to happen?",
-        "Build qualified interest before the first recycled-silver collection launch.",
+        "Build qualified interest before a recycled-silver collection launch.",
+    )
+    review_needed = st.checkbox(
+        "This brief includes a new claim, price promise, regulated statement, or major budget decision."
     )
 
-if st.button("Start autonomous agency run", type="primary", use_container_width=True):
+metrics = simulated_metrics(autonomy, review_needed)
+metric_columns = st.columns(4)
+metric_columns[0].metric("Traditional setup", metrics["traditional"])
+metric_columns[1].metric("Simulated autonomous cycle", metrics["autonomous"])
+metric_columns[2].metric("Decision-ready outputs", metrics["outputs"])
+metric_columns[3].metric("Human reviews", metrics["reviews"])
+
+if st.button("Start AgencyOS run", type="primary", use_container_width=True):
     st.session_state["run_complete"] = False
-    with st.status("Agency systems are working", expanded=True) as status:
-        for index, (department, description) in enumerate(DEPARTMENTS, start=1):
-            st.write(f"**{index:02d} · {department}** — {description}")
-            time.sleep(0.35)
-        status.update(label="Autonomous run complete", state="complete", expanded=False)
+    st.session_state["review_needed"] = review_needed
+    with st.status("AgencyOS is coordinating the campaign", expanded=True) as status:
+        for number, (agent, action) in enumerate(AGENTS, start=1):
+            if agent == "Governance Layer" and review_needed:
+                st.warning(f"{number:02d} · {agent} — Human approval requested before launch.")
+            else:
+                st.write(f"{number:02d} · **{agent}** — {action}")
+            time.sleep(0.32)
+        label = "Campaign staged for human approval" if review_needed else "Bounded launch route ready"
+        status.update(label=label, state="complete", expanded=False)
     st.session_state["run_complete"] = True
 
 if st.session_state.get("run_complete"):
-    st.success(f"Campaign ready for launch: {brand}")
-    st.write(
-        f"The agency created a route to **{objective.lower()}** from the brief: “{goal}” "
-        f"The model treats human involvement as exception-only; people enter when a safety, policy, "
-        "or accountability issue is escalated."
-    )
+    if st.session_state.get("review_needed"):
+        st.warning("Human decision requested before launch")
+        st.write(
+            "The system completed routine research, strategy, production, and planning, "
+            "but correctly stopped for a responsible owner to approve the flagged claim or spend decision."
+        )
+    else:
+        st.success("Campaign route ready for bounded launch")
+        st.write(
+            f"**{brand}** has a measured route to **{objective.lower()}**. "
+            "The simulation would keep monitoring routine signals and write learning back to Brand Memory."
+        )
 
 st.divider()
-st.subheader("What the agency does")
-columns = st.columns(3)
-for column, (department, description) in zip(columns * 2, DEPARTMENTS + [("Client Portal", "Makes work, decisions, and outcomes transparent without status-meeting overload.")]):
-    with column:
-        st.markdown(f"**{department}**")
-        st.caption(description)
+st.subheader("What each system owns")
+for start in range(0, len(AGENTS), 3):
+    columns = st.columns(3)
+    for column, (agent, action) in zip(columns, AGENTS[start : start + 3]):
+        with column:
+            st.markdown(f"**{agent}**")
+            st.caption(action)
+
+st.caption("Portfolio prototype: outputs are illustrative workflow simulations, not performance guarantees or live ad-platform actions.")
