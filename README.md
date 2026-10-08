@@ -1,24 +1,25 @@
-# AgencyOS — Agency of Tomorrow
+# Campaign Launch Lab
 
-A speculative, interactive operating model for a transparent autonomous marketing agency.
+A simple, interactive marketing prototype that turns a campaign brief into an **Invest**, **Test First**, or **Pause** recommendation and a first campaign launch kit.
 
 Read the portfolio-ready [Campaign Launch Lab case study](CASE_STUDY.md).
 
 ## The idea
 
-What if a marketing agency used specialized AI agents to keep work moving around the clock—while people stayed accountable for brand judgment, public claims, privacy, spend, and cultural direction?
+What if an interactive marketing system made the repetitive first steps of campaign planning faster—while people stayed accountable for research evidence, public claims, privacy, spend, and creative judgment?
 
 ## Prototype capabilities
 
-- Seven connected agency systems: Brand Memory, Market Intelligence, Campaign Strategy, Creative Flywheel, Media Autopilot, Opportunity Hunter, and Governance
-- One shared record of brand context, approved claims, audience signals, and learning
-- An interactive campaign simulation with a visible decision log
-- Rules that distinguish routine autonomous work from exceptions requiring human approval
-- A jewelry-brand sample brief, plus support for custom non-sensitive briefs
+- A campaign decision: **Invest**, **Test First**, or **Pause**
+- Five visible agent steps: Brief Organizer, Research Desk, Campaign Planner, Test Designer, and Approval Gate
+- A transparent record of what each agent reviewed and recommended
+- An attached research-source field; factual claims are never presented as verified without a source
+- A first campaign kit: direction, social copy, test approach, and an original visual concept
+- Support for any industry, not only jewelry
 
 ## Why it matters
 
-This is not a claim that AI replaces marketers or that it should make unaccountable public decisions. It is a product concept for making marketing operations, handoffs, decisions, and learning more visible and useful.
+This is not a claim that AI predicts campaign success or replaces marketers. It is a product concept for making early marketing research, decisions, and first-draft campaign work more visible and less time-consuming.
 
 ## Built with
 

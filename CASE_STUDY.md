@@ -18,7 +18,7 @@ Those steps are necessary, but they can be slow, fragmented, and difficult for a
 
 ## The concept
 
-Campaign Launch Lab is a proposed interactive agency workflow. A user enters a brand, campaign goal, and outcome. Specialized Python agents create a visible decision record instead of operating as a black box.
+Campaign Launch Lab is a proposed interactive agency workflow. A user enters a brand, campaign goal, audience, early market signal, and optional research source. Specialized Python agents create a visible decision record instead of operating as a black box.
 
 The workflow is designed to answer one clear question:
 
@@ -26,13 +26,11 @@ The workflow is designed to answer one clear question:
 
 ## Workflow
 
-1. **Brand Memory** — organizes the brief, brand voice, product, audience, and approved information.
-2. **Market Intelligence** — frames the research questions around category, competitor, and customer signals.
-3. **Campaign Strategy** — creates an audience tension, campaign hypothesis, channel role, and success measure.
-4. **Creative Flywheel** — prepares campaign directions, messaging, and format variations.
-5. **Media Autopilot** — creates a bounded test and measurement plan.
-6. **Opportunity Hunter** — prepares a route for approved lead follow-up.
-7. **Governance Layer** — escalates public claims, privacy concerns, material spend, or brand-safety issues to a person.
+1. **Brief Organizer** — turns the request into a focused campaign question.
+2. **Research Desk** — records the market signal and attached source; it flags unsupported factual claims.
+3. **Campaign Planner** — creates an audience focus, campaign hypothesis, and measurable goal.
+4. **Test Designer** — creates a small campaign test before larger investment.
+5. **Approval Gate** — recommends **Invest**, **Test First**, or **Pause** and identifies the next human decision.
 
 ## Why it is interactive marketing
 
@@ -49,8 +47,8 @@ The current version uses deterministic sample logic so its behavior can be inspe
 ## What I would build next
 
 1. Connect a reliable live-research provider and show a source link, publisher, and date beside every factual claim.
-2. Turn the final recommendation into **Invest**, **Test First**, or **Pause**, with clear reasoning and risk indicators.
-3. Generate an approved launch kit: campaign concepts, social posts, captions, email, ad-copy variations, visual mockups, and content calendar.
+2. Add a richer evidence score that checks source reliability and campaign-specific research signals.
+3. Expand the first launch kit into campaign concepts, social posts, captions, email, ad-copy variations, visual mockups, and content calendar.
 4. Add an experiment dashboard that compares a small test with the campaign hypothesis and recommends the next action.
 
 ## What this project demonstrates
