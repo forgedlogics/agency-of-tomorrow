@@ -1,98 +1,46 @@
 # AgencyOS — The Agency of Tomorrow
 
-A professional portfolio concept for an AI-powered marketing agency. AgencyOS uses its Campaign Launch Lab to turn a campaign brief into an **Invest**, **Test First**, or **Pause** recommendation and a first campaign launch kit.
+AgencyOS is my portfolio concept for an AI-powered marketing agency. It helps an emerging consumer brand decide whether a campaign should **Invest**, **Test First**, or **Pause**, then prepares a first campaign direction and launch plan.
 
-## The agency model
+## Start here
 
-Campaign Launch Lab is an AI-powered agency concept for emerging consumer brands. Its productized offer, the **Campaign Test Sprint**, takes a client from campaign qualification to research, a decision, launch materials, and an ongoing three-agent growth engine:
+You do not need to understand code to view the project.
 
-- **Content Flywheel:** creates, tests, and learns from content.
-- **Amplification Engine:** turns winning messages into bounded paid distribution.
-- **Opportunity Hunter:** routes interest into fast, helpful follow-up and human handoff.
+- **View the website:** https://forgedlogics.github.io/agency-of-tomorrow/
+- **Read the case study:** [CASE_STUDY.md](CASE_STUDY.md)
+- **Contact:** nikunj.verma@live.com
 
-The agency is designed to automate repetitive work, not to remove accountability for evidence, public claims, spend, or creative judgment.
+## The important files
 
-## Contact
+| File or folder | What it does |
+| --- | --- |
+| `index.html` | The public website visitors see. |
+| `CASE_STUDY.md` | Explains the marketing idea for your portfolio. |
+| `app.py` | Optional Python version of the simulator. |
+| `agencyos/` | The simple Python agent workflow used by the simulator. |
+| `run_agency.py` | Runs the Python workflow in Terminal. You do not need this to view the website. |
+| `public/assets/` | Visual used on the website. |
 
-For portfolio, collaboration, or early-stage project inquiries: [nikunj.verma@live.com](mailto:nikunj.verma@live.com)
+## The simple idea
 
-## Scope and transparency
+1. A brand enters a campaign idea.
+2. The system shows the research and planning steps.
+3. It recommends **Invest**, **Test First**, or **Pause**.
+4. It creates a first campaign direction, social-post idea, and small test plan.
+5. After approval, the growth engine helps content, promotion, and lead follow-up work together.
 
-AgencyOS is a professional portfolio concept. It demonstrates marketing strategy, AI workflow design, and interactive campaign planning; it does not claim active client work, live ad-account access, legal-business registration, or guaranteed campaign results.
+## Optional Python command
 
-Read the portfolio-ready [Campaign Launch Lab case study](CASE_STUDY.md).
-
-## The idea
-
-What if an interactive marketing system made the repetitive first steps of campaign planning faster—while people stayed accountable for research evidence, public claims, privacy, spend, and creative judgment?
-
-## Prototype capabilities
-
-- A campaign decision: **Invest**, **Test First**, or **Pause**
-- Five visible agent steps: Brief Organizer, Research Desk, Campaign Planner, Test Designer, and Approval Gate
-- A transparent record of what each agent reviewed and recommended
-- An attached research-source field; factual claims are never presented as verified without a source
-- A first campaign kit: direction, social copy, test approach, and an original visual concept
-- Support for any industry, not only jewelry
-
-## Why it matters
-
-This is not a claim that AI predicts campaign success or replaces marketers. It is a product concept for making early marketing research, decisions, and first-draft campaign work more visible and less time-consuming.
-
-## Built with
-
-- React
-- Next.js / Vinext
-- TypeScript
-- CSS
-- Python / Streamlit
-
-## Python agents
-
-The reusable Python workflow lives in `agencyos/`. It contains seven deterministic, explainable agents and an `AgencyOS` orchestrator. It deliberately does **not** connect to an ad account, CRM, or customer data: the first version is safe to inspect and test locally.
-
-Run the agents directly from Terminal:
+Only use this if you want to explore the code later:
 
 ```bash
 python3 run_agency.py
 ```
 
-Try the human-review path:
+## Archive
 
-```bash
-python3 run_agency.py --claim-review
-```
+Older experiments are kept in [`archive/previous-nextjs-experiment/`](archive/previous-nextjs-experiment/) so the main project stays easy to understand. You can ignore this folder.
 
-Both commands print a JSON decision record showing each agent's action, outputs, and whether launch needs a human owner.
+## Scope
 
-## Run the Python app
-
-The primary interactive simulator is written in Python with Streamlit.
-
-```bash
-python3 -m pip install -r requirements.txt
-streamlit run app.py
-```
-
-## Static preview
-
-### Simplest option: browser
-
-Open `index.html` in any browser. No installation is required.
-
-### Terminal simulation
-
-```bash
-python3 simulate_agency.py
-```
-
-### Full prototype
-
-```bash
-npm install
-npm run dev
-```
-
-## Status
-
-Active concept prototype. The current version uses structured example logic rather than a live AI integration.
+AgencyOS is a professional portfolio concept. It demonstrates marketing strategy, AI workflow design, and interactive campaign planning. It does not claim active client work, legal-business registration, live ad-account access, or guaranteed results.
