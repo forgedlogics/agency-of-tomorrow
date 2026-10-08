@@ -301,10 +301,12 @@ main {
 .plan-output { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 22px; }
 .plan-output h3 { margin: 0 0 18px; font-size: 1.35rem; line-height: 1.25; }
 .empty { color: var(--muted); margin: 0; }
-.response-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.response-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .response-grid article { border: 1px solid var(--border); border-radius: 16px; padding: 16px; background: rgba(0,0,0,.14); }
 .response-grid span { color: var(--accent-2); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; }
 .response-grid p { color: var(--muted); line-height: 1.55; margin: 10px 0 0; }
+.save-action { margin-top: 16px; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--foreground); padding: 11px 15px; cursor: pointer; font: 600 .86rem var(--font-geist-sans), sans-serif; }
+.save-action:hover { border-color: var(--accent-2); color: var(--accent-2); }
 
 @media (max-width: 980px) {
   .hero-grid,
