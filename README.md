@@ -8,7 +8,6 @@ You do not need to understand code to view the project.
 
 - **View the website:** https://forgedlogics.github.io/agency-of-tomorrow/
 - **Read the case study:** [CASE_STUDY.md](CASE_STUDY.md)
-- **Contact:** nikunj.verma@live.com
 
 ## The important files
 
