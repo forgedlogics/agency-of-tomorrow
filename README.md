@@ -2,6 +2,8 @@
 
 A speculative, interactive operating model for a transparent autonomous marketing agency.
 
+Read the portfolio-ready [Campaign Launch Lab case study](CASE_STUDY.md).
+
 ## The idea
 
 What if a marketing agency used specialized AI agents to keep work moving around the clock—while people stayed accountable for brand judgment, public claims, privacy, spend, and cultural direction?
