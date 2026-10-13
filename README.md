@@ -25,7 +25,6 @@ It is a creative marketing operating system that takes a focused business brief 
 The public experience is an interactive campaign studio. Enter a brand brief and it produces an immediate campaign package with a creative route, strategy, content system, experiment, measurement plan, and clickable review queue. Packages can be saved locally in the browser.
 
 - [Open AgencyOS](https://forgedlogics.github.io/agency-of-tomorrow/)
-- [View the Tide Collection campaign kit](https://forgedlogics.github.io/agency-of-tomorrow/campaign-kit.html)
 
 ## The AgencyOS operating loop
 
@@ -46,7 +45,6 @@ AgencyOS is especially suited to founder-led and design-led brands where the pro
 | File or folder | Purpose |
 | --- | --- |
 | `index.html` | Interactive public AgencyOS campaign studio. |
-| `campaign-kit.html` | Full luxury campaign deliverable for the Tide Collection. |
 | `agencyos/` | Python model of specialist-agent orchestration. |
 | `run_agency.py` | Runs the local planning workflow. |
 | `app.py` | Optional Streamlit interface for the model-connected workflow. |
