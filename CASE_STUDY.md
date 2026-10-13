@@ -1,60 +1,53 @@
-# AgencyOS — The Agency of Tomorrow
+# AgencyOS — an autonomous marketing operating system
 
-## An AI-powered marketing-agency portfolio concept for moving from campaign brief to test-ready launch
-
-**Project type:** Independent product and marketing-operations prototype  
-**Role:** Research, campaign strategy, interaction design, and Python workflow development  
-**Status:** Professional portfolio concept — simulated workflow; no live ad accounts or customer data
+**Project type:** Independent product and marketing-operations prototype
+**Role:** Product concept, marketing strategy, interaction design, and workflow development
+**Status:** Portfolio prototype; simulated workflows only
 
 ## The problem
 
-Marketing teams spend significant time on repetitive work before a campaign can begin: translating a client brief, collecting early research, reviewing competitors, creating first-draft copy, adapting creative for different channels, and preparing status updates.
+Small businesses often run marketing as disconnected projects: research in one place, content in another, planning in a spreadsheet, approvals in messages, and reporting after the fact. Work is repeated, context gets lost, and lessons from one launch do not reliably shape the next.
 
-Those steps are necessary, but they can be slow, fragmented, and difficult for a client to follow. Small brands especially may not have the time or budget to move from an idea to a well-reasoned campaign test.
+Generative AI can produce a single asset quickly, but a business needs more than content generation. It needs an operating system that understands goals, maintains context, coordinates specialist work, and makes the next decision easier.
 
-## The question
+## The product question
 
-**How might an interactive marketing system help a brand decide whether a campaign is ready to test, then reduce the repetitive work needed to prepare it?**
+**How might an AI-powered agency run repeatable marketing work independently while keeping a business owner accountable for consequential decisions?**
 
 ## The concept
 
-AgencyOS is a proposed AI-powered agency model. Its Campaign Launch Lab lets a user enter a brand, campaign goal, audience, early market signal, and optional research source. Specialized Python agents create a visible decision record instead of operating as a black box.
+AgencyOS is a proposed AI marketing operating system. Its core is **Brand Memory**: a governed record of business goals, audience knowledge, brand rules, offers, campaign history, and validated learnings. Specialist agents work from that shared context to research an opportunity, develop a campaign, create content systems, coordinate approved work, monitor results, and recommend the next action.
 
-The workflow is designed to answer one clear question:
+It is not a black-box autopilot. Each action belongs to a named specialist and produces a visible campaign record. The system is autonomous for bounded, low-risk work; people approve public claims, paid-media limits, final publishing, sensitive customer interactions, and exceptions.
 
-> Should the brand invest in this campaign, test it on a small scale, or pause and improve the idea first?
+## Operating loop
 
-## Workflow
-
-1. **Brief Organizer** — turns the request into a focused campaign question.
-2. **Research Desk** — records the market signal and attached source; it flags unsupported factual claims.
-3. **Campaign Planner** — creates an audience focus, campaign hypothesis, and measurable goal.
-4. **A/B Test Agent** — creates two controlled message variations and one success metric before larger investment.
-5. **Approval Gate** — recommends **Invest**, **Test First**, or **Pause** and identifies the next human decision.
-
-## Why it is interactive marketing
-
-The project treats marketing as a feedback loop rather than one-way advertising. The user can enter a brief, see each system’s action, inspect its decision trail, and understand what happens next. In a future version, campaign results would feed back into Brand Memory to improve the next recommendation.
+1. Know the business.
+2. Find the signal.
+3. Choose the move.
+4. Build the campaign.
+5. Ask for approval.
+6. Coordinate launch.
+7. Learn and adapt.
 
 ## Current prototype
 
-- Public interactive workflow: [GitHub Pages demo](https://forgedlogics.github.io/agency-of-tomorrow/)
-- Python simulator: [Streamlit demo](https://5zzvgaaiediuctukwyrjjr.streamlit.app/)
-- Python agent workflow: `agencyos/` and `run_agency.py`
+The public prototype is an interactive Command Center that shows the operating model, illustrative Brand Memory, agent activity, approval status, and a campaign-route simulator. Its output is deliberately transparent and simulated: it does not conduct live research, claim external facts, publish to a channel, or access an advertising account.
 
-The current version uses deterministic sample logic so its behavior can be inspected safely. It does not claim to predict campaign success, access live customer data, or publish to advertising platforms.
+The repository also includes an inspectable Python workflow. It uses deterministic outputs to model how specialist agents produce an accountable decision record.
 
-## What I would build next
+## Build direction
 
-1. Connect a reliable live-research provider and show a source link, publisher, and date beside every factual claim.
-2. Add a richer evidence score that checks source reliability and campaign-specific research signals.
-3. Expand the first launch kit into campaign concepts, social posts, captions, email, ad-copy variations, visual mockups, and content calendar.
-4. Add an experiment dashboard that compares a small test with the campaign hypothesis and recommends the next action.
+1. Business onboarding that creates a governed Brand Memory profile.
+2. Research connections with citations, source dates, and confidence indicators.
+3. A campaign workspace with content briefs, approval states, asset versions, and channel calendars.
+4. Connected publishing and advertising integrations, enabled only through explicitly approved permissions and budgets.
+5. An analytics and learning layer that records outcomes, confidence, and recommendations across campaigns.
 
 ## What this project demonstrates
 
-- Campaign planning and customer-journey thinking
-- Interactive experience design
-- Marketing automation and AI workflow design
-- Research transparency and responsible AI boundaries
-- Translating a marketing problem into a working public prototype
+- Marketing systems thinking and customer-journey design
+- AI-agent orchestration with explicit roles and controls
+- Product communication and interactive prototype design
+- Responsible automation boundaries
+- Translating an agency-service idea into a buildable software product

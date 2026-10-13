@@ -1,46 +1,34 @@
-# AgencyOS — The Agency of Tomorrow
+# AgencyOS — an autonomous marketing operating system
 
-AgencyOS is my portfolio concept for an AI-powered marketing agency. It helps an emerging consumer brand decide whether a campaign should **Invest**, **Test First**, or **Pause**, then prepares a first campaign direction and launch plan.
+AgencyOS is a portfolio prototype for an AI marketing agency that operates as a continuous system, not a one-off campaign generator. It helps a business understand its context, research opportunities, develop campaigns, create and coordinate content, request human approval where needed, measure outcomes, and learn what to do next.
 
-## Start here
+## What it is
 
-You do not need to understand code to view the project.
+The public demo is a browser-based prototype of the **AgencyOS Command Center**. It demonstrates the operating model and a transparent campaign route; it does not access live customer data, publish content, operate ad accounts, or make decisions for a business without configured controls.
 
-- **View the live website:** [Open AgencyOS](https://forgedlogics.github.io/agency-of-tomorrow/)
-- **Read the case study:** [CASE_STUDY.md](CASE_STUDY.md)
+Open the site: [AgencyOS on GitHub Pages](https://forgedlogics.github.io/agency-of-tomorrow/)
 
-## The important files
+## The operating loop
 
-| File or folder | What it does |
+1. **Brand Memory** — retains goals, audience insight, brand rules, offers, campaign history, and verified learnings.
+2. **Market Intelligence** — researches customers, trends, competitors, and emerging opportunities.
+3. **Campaign Strategy** — turns evidence into a prioritized hypothesis and measurement plan.
+4. **Creative Flywheel** — develops campaign territory, content systems, and channel-ready variants.
+5. **Launch Coordination** — prepares approved publishing, promotion, response, and optimization workflows.
+6. **Learning Engine** — measures outcomes and recommends the next best action.
+7. **Governance Layer** — requires human approval for public claims, spending, sensitive actions, and exceptions.
+
+## Repository guide
+
+| File or folder | Purpose |
 | --- | --- |
-| `index.html` | The public website visitors see. |
-| `CASE_STUDY.md` | Explains the marketing idea for your portfolio. |
-| `app.py` | Optional Python version of the simulator. |
-| `agencyos/` | The simple Python agent workflow used by the simulator. |
-| `run_agency.py` | Runs the Python workflow in Terminal. You do not need this to view the website. |
-| `public/assets/` | Visual used on the website. |
+| `index.html` | Public AgencyOS Command Center prototype. |
+| `agencyos/` | Inspectable Python model of specialist-agent orchestration. |
+| `run_agency.py` | Runs the local Python workflow. |
+| `app.py` | Optional Streamlit presentation of the workflow. |
+| `CASE_STUDY.md` | Product rationale and build direction. |
+| `archive/` | Earlier experiments, kept separate from the current prototype. |
 
-## The simple idea
+## Safety boundary
 
-1. A brand enters a campaign idea.
-2. The system shows the research and planning steps.
-3. It recommends **Invest**, **Test First**, or **Pause**.
-4. It creates a first campaign direction, social-post idea, and small test plan.
-5. It prepares an A/B test with two message variations and one defined success metric.
-6. After approval, the growth engine helps content, promotion, and lead follow-up work together.
-
-## Optional Python command
-
-Only use this if you want to explore the code later:
-
-```bash
-python3 run_agency.py
-```
-
-## Archive
-
-Older experiments are kept in [`archive/previous-nextjs-experiment/`](archive/previous-nextjs-experiment/) so the main project stays easy to understand. You can ignore this folder.
-
-## Scope
-
-AgencyOS is a professional portfolio concept. It demonstrates marketing strategy, AI workflow design, and interactive campaign planning. It does not claim active client work, legal-business registration, live ad-account access, or guaranteed results.
+AgencyOS is designed to be autonomous in low-risk work—research organization, drafting, monitoring, and recommendations—while people remain accountable for consequential, public, or sensitive actions. The prototype makes no claim of live client service, marketing-platform access, legal-business registration, or guaranteed marketing results.
