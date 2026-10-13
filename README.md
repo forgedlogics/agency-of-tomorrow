@@ -64,9 +64,9 @@ The app creates and stores a structured campaign package: strategy, content draf
 
 ## Connect live visual generation to the public site
 
-GitHub Pages is deliberately static, so it cannot safely hold an OpenAI API key. The included `api_server.py` is the private bridge between the homepage and the OpenAI image API: it receives the visitor’s brief, creates the image prompt on the server, and returns that one generated visual to the visitor.
+GitHub Pages is deliberately static, so it cannot safely hold an API key. The included `api_server.py` is the private bridge between the homepage and the Gemini image API: it receives the visitor’s brief, creates the image prompt on the server, and returns that one generated visual to the visitor.
 
-Deploy `api_server.py` to a Python service (the included `render.yaml` is ready for Render), set `OPENAI_API_KEY` in that service’s secret settings, then set the deployed API URL in `agencyos-config.js`. Never put the API key in `agencyos-config.js`, GitHub Pages, or browser JavaScript.
+Deploy `api_server.py` to a Python service (the included `render.yaml` is ready for Render), set `GEMINI_API_KEY` in that service’s secret settings, then set the deployed API URL in `agencyos-config.js`. Never put the API key in `agencyos-config.js`, GitHub Pages, or browser JavaScript. Gemini's native image-generation models require the paid Gemini API tier; the free key can still be used for text/research integrations.
 
 ## The line AgencyOS will not cross
 

@@ -1,7 +1,7 @@
 """Private visual-generation API for the public AgencyOS homepage.
 
 Run locally: uvicorn api_server:app --host 0.0.0.0 --port 8000
-Set OPENAI_API_KEY only in the server environment.
+Set GEMINI_API_KEY only in the server environment.
 """
 
 import base64
@@ -12,7 +12,7 @@ from collections import defaultdict
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from openai import OpenAI
+from google import genai
 
 DEFAULT_ORIGINS = "https://forgedlogics.github.io,http://localhost:4177,http://127.0.0.1:4177"
 allowed_origins = [item.strip() for item in os.getenv("AGENCYOS_ALLOWED_ORIGINS", DEFAULT_ORIGINS).split(",")]
@@ -68,30 +68,39 @@ def check_rate_limit(request: Request) -> None:
 
 @app.get("/health")
 def health() -> dict[str, bool]:
-    return {"ready": bool(os.getenv("OPENAI_API_KEY"))}
+    return {"ready": bool(os.getenv("GEMINI_API_KEY"))}
 
 
 @app.post("/generate-visual")
 def generate_visual(brief: VisualBrief, request: Request) -> dict[str, str]:
-    if not os.getenv("OPENAI_API_KEY"):
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not api_key:
         raise HTTPException(status_code=503, detail="The visual engine has not been configured with an API key.")
 
     check_rate_limit(request)
     prompt = visual_prompt(brief)
     try:
-        response = OpenAI().images.generate(
-            model=os.getenv("OPENAI_IMAGE_MODEL", "gpt-image-1"),
-            prompt=prompt,
-            size="1024x1536",
-            quality="medium",
-            output_format="png",
+        client = genai.Client(api_key=api_key)
+        response = client.models.generate_content(
+            model=os.getenv("GEMINI_IMAGE_MODEL", "gemini-3.1-flash-image"),
+            contents=[prompt],
         )
-        encoded = response.data[0].b64_json
-        if not encoded:
+        image_part = next(
+            (
+                part.inline_data
+                for part in (response.parts or [])
+                if getattr(part, "inline_data", None)
+                and getattr(part.inline_data, "data", None)
+            ),
+            None,
+        )
+        if not image_part:
             raise RuntimeError("The image API returned no image data.")
+        encoded = base64.b64encode(image_part.data).decode("ascii")
+        mime_type = image_part.mime_type or "image/png"
         # The browser receives this one generated image directly; the server
         # does not persist visitors' campaign concepts.
-        return {"image_data_url": f"data:image/png;base64,{encoded}", "prompt": prompt}
+        return {"image_data_url": f"data:{mime_type};base64,{encoded}", "prompt": prompt}
     except HTTPException:
         raise
     except Exception as error:
