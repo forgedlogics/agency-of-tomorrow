@@ -1,12 +1,14 @@
 # AgencyOS — an autonomous marketing operating system
 
-AgencyOS is a portfolio prototype for an AI marketing agency that operates as a continuous system, not a one-off campaign generator. It helps a business understand its context, research opportunities, develop campaigns, create and coordinate content, request human approval where needed, measure outcomes, and learn what to do next.
+AgencyOS is a creative marketing operating system for independent brands. It turns business context into campaign strategy, art direction, copy, content systems, experiments, and accountable approvals.
 
 ## What it is
 
-The public demo is a browser-based prototype of the **AgencyOS Command Center**. It demonstrates the operating model and a transparent campaign route; it does not access live customer data, publish content, operate ad accounts, or make decisions for a business without configured controls.
+The public site is the AgencyOS creative world and output library. It includes a complete campaign kit so visitors can see the quality and format of work AgencyOS is built to produce.
 
 Open the site: [AgencyOS on GitHub Pages](https://forgedlogics.github.io/agency-of-tomorrow/)
+
+View the agency-style deliverable: [Tide Collection Campaign Kit](https://forgedlogics.github.io/agency-of-tomorrow/campaign-kit.html)
 
 ## The operating loop
 
@@ -22,12 +24,13 @@ Open the site: [AgencyOS on GitHub Pages](https://forgedlogics.github.io/agency-
 
 | File or folder | Purpose |
 | --- | --- |
-| `index.html` | Public AgencyOS Command Center prototype. |
+| `index.html` | Public AgencyOS creative-world homepage. |
+| `campaign-kit.html` | Client-ready example campaign deliverable. |
 | `agencyos/` | Inspectable Python model of specialist-agent orchestration. |
 | `run_agency.py` | Runs the local Python workflow. |
 | `app.py` | Optional Streamlit presentation of the workflow. |
 | `CASE_STUDY.md` | Product rationale and build direction. |
-| `archive/` | Earlier experiments, kept separate from the current prototype. |
+| `archive/` | Earlier experiments, kept separate from the current build. |
 
 ## Run the real planning app
 
@@ -48,4 +51,4 @@ not publish, spend, or contact customers.
 
 ## Safety boundary
 
-AgencyOS is designed to be autonomous in low-risk work—research organization, drafting, monitoring, and recommendations—while people remain accountable for consequential, public, or sensitive actions. The prototype makes no claim of live client service, marketing-platform access, legal-business registration, or guaranteed marketing results.
+AgencyOS is designed to automate research organization, drafting, monitoring, and recommendations while people remain accountable for consequential, public, or sensitive actions. It does not publish, spend, or contact customers without configured integrations and explicit approval rules.

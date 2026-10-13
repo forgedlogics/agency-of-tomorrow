@@ -1,8 +1,8 @@
 # AgencyOS — an autonomous marketing operating system
 
-**Project type:** Independent product and marketing-operations prototype
+**Project type:** Independent creative-marketing operating system
 **Role:** Product concept, marketing strategy, interaction design, and workflow development
-**Status:** Portfolio prototype; simulated workflows only
+**Status:** Creative operating model with a working, model-backed campaign-planning application
 
 ## The problem
 
@@ -30,9 +30,9 @@ It is not a black-box autopilot. Each action belongs to a named specialist and p
 6. Coordinate launch.
 7. Learn and adapt.
 
-## Current prototype
+## Current build
 
-The public prototype is an interactive Command Center that shows the operating model, illustrative Brand Memory, agent activity, approval status, and a campaign-route simulator. Its output is deliberately transparent and simulated: it does not conduct live research, claim external facts, publish to a channel, or access an advertising account.
+The public site explains the operating model and includes a full campaign kit with strategy, art direction, copy, content system, test plan, and approval queue. The companion Streamlit application creates this type of structured package from a business brief when its server-side model connection is configured.
 
 The repository also includes an inspectable Python workflow. It uses deterministic outputs to model how specialist agents produce an accountable decision record.
 
@@ -48,6 +48,6 @@ The repository also includes an inspectable Python workflow. It uses determinist
 
 - Marketing systems thinking and customer-journey design
 - AI-agent orchestration with explicit roles and controls
-- Product communication and interactive prototype design
+- Product communication and creative-system design
 - Responsible automation boundaries
 - Translating an agency-service idea into a buildable software product

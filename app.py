@@ -78,4 +78,4 @@ if runs:
     st.dataframe(runs, use_container_width=True, hide_index=True)
 else:
     st.caption("No campaign packages have been created in this local workspace yet.")
-st.caption("AgencyOS prototype: outputs are drafts and recommendations. It does not perform live research, publish, buy media, or contact people without configured integrations and explicit approval rules.")
+st.caption("AgencyOS outputs are drafts and recommendations. It does not perform live research, publish, buy media, or contact people without configured integrations and explicit approval rules.")
