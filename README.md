@@ -1,40 +1,39 @@
 # AgencyOS
 
-## The agency that does not wait for a brief to become a spreadsheet
+## The AI automation agency that turns friction into operating systems
 
-AgencyOS was created around a simple frustration: great independent brands should not need a full agency retainer, a stack of disconnected tools, and constant follow-up just to turn a good product into a coherent campaign.
+AgencyOS was created around a simple frustration: ambitious businesses should not need a collection of disconnected tools, manual handoffs, and constant follow-up just to turn customer interest into growth.
 
-The usual process is fragmented. Research lives in one place, strategy in another, content is drafted without context, performance is reviewed after the moment has passed, and the founder becomes the person connecting every dot. AgencyOS is designed to close that gap.
+The usual process is fragmented. Leads sit in forms and DMs, research lives in tabs, content is made without customer context, CRM follow-up is inconsistent, and the founder becomes the person connecting every dot. AgencyOS is designed to close that gap.
 
-It is a creative marketing operating system that takes a focused business brief and develops the work a sharp agency team would normally coordinate: a campaign territory, strategic hypothesis, art direction, channel-ready content, controlled testing, measurement, and an approval route.
+It is an AI automation agency that designs and operates the systems a sharp growth team would normally coordinate: lead capture, qualification, research, content, outreach, CRM follow-up, reporting, and accountable approvals.
 
-**The ambition is not automated noise. It is a more independent agency brain—one that remembers the brand, notices opportunities, develops the campaign, and learns what to do next.**
+**The ambition is not automated noise. It is a more independent agency brain—one that notices opportunities, moves routine work forward, and learns what to do next.**
 
 ## What it solves
 
 | The problem | The AgencyOS response |
 | --- | --- |
-| A campaign begins from a blank page every time. | Start from brand context, audience insight, the offer, and previous learning. |
-| Strategy, creative, and execution lose the same central idea. | Turn one strategic thought into a connected campaign world across content, copy, channels, and testing. |
-| Small teams spend too much time coordinating tools and people. | Put research, planning, production direction, and approval decisions into one operating loop. |
-| Automation can publish generic or risky work. | Keep spend, public claims, publishing, and sensitive decisions behind human approval. |
-| Marketing is measured too late to improve it. | Define the test, success signal, and next decision before launch. |
+| Leads and inbound interest go cold. | Capture, enrich, score, route, and follow up using a defined customer journey. |
+| Research, content, and outreach live in separate tools. | Connect them into a single context-aware growth system. |
+| Small teams spend too much time on handoffs and admin. | Automate routine research, CRM updates, reporting, and repeatable operational work. |
+| Automation can send generic or risky work. | Keep public claims, messages, spend, and sensitive actions behind human approval. |
+| Activity is measured too late to improve it. | Build measurement and a next-action loop into every automation from the start. |
 
 ## See it in action
 
-The public experience is an interactive campaign studio. Enter a brand brief and it produces an immediate campaign package with a creative route, strategy, content system, experiment, measurement plan, and clickable review queue. With the private Visual Engine connected, the same brief can also produce an original campaign image—never a fixed stock mockup. Packages can be saved locally in the browser.
+The public experience is an interactive Automation Audit. Enter a business, offer, bottleneck, outcome, customer, and current tools. AgencyOS produces an immediate automation blueprint with a priority system, workflow logic, intelligence layer, content-and-demand engine, measurement plan, and clickable approvals. With the private Visual Engine connected, the same brief can also produce an original campaign image—never a fixed stock mockup. Blueprints can be saved locally in the browser.
 
 - [Open AgencyOS](https://forgedlogics.github.io/agency-of-tomorrow/)
 
 ## The AgencyOS operating loop
 
-1. **Brand memory** — retains the brand’s codes, audience, offers, guardrails, and accumulated learning.
-2. **Market intelligence** — organizes customer, competitor, culture, and category signals.
-3. **Campaign strategy** — turns evidence into a prioritized hypothesis and an outcome to move.
-4. **Creative flywheel** — develops the creative territory, content system, copy, and production direction.
-5. **Launch coordination** — prepares approved publishing, promotion, responses, and optimization workflows.
-6. **Learning engine** — measures what happened and recommends the next best move.
-7. **Governance** — keeps the human accountable for public claims, spend, sensitive actions, and exceptions.
+1. **Capture** — collects inbound interest and operating signals from the places customers already show up.
+2. **Qualify** — enriches, scores, and routes opportunities based on the business’s actual criteria.
+3. **Create** — turns research and customer context into campaign drafts, content, and visual concepts.
+4. **Follow through** — updates the CRM, prepares timely outreach, and eliminates manual handoffs.
+5. **Learn** — measures the response, records the result, and recommends the next best move.
+6. **Govern** — keeps the human accountable for public claims, spend, sensitive actions, and exceptions.
 
 ## Built for brands with a point of view
 
@@ -44,7 +43,7 @@ AgencyOS is especially suited to founder-led and design-led brands where the pro
 
 | File or folder | Purpose |
 | --- | --- |
-| `index.html` | Interactive public AgencyOS campaign studio. |
+| `index.html` | Interactive public AgencyOS Automation Audit. |
 | `agencyos/` | Python model of specialist-agent orchestration. |
 | `run_agency.py` | Runs the local planning workflow. |
 | `app.py` | Optional Streamlit interface for the model-connected workflow. |
