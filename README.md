@@ -29,6 +29,23 @@ Open the site: [AgencyOS on GitHub Pages](https://forgedlogics.github.io/agency-
 | `CASE_STUDY.md` | Product rationale and build direction. |
 | `archive/` | Earlier experiments, kept separate from the current prototype. |
 
+## Run the real planning app
+
+GitHub Pages hosts only the public concept page. The working AgencyOS app is
+the Streamlit application because model calls and business memory must remain
+server-side.
+
+    python3 -m pip install -r requirements.txt
+    export OPENAI_API_KEY="your_api_key"
+    streamlit run app.py
+
+`OPENAI_API_KEY` is intentionally excluded from Git. On Streamlit Community
+Cloud, add it through the app's Secrets settings instead of committing it.
+
+The app creates and stores a structured campaign package: strategy, content
+drafts, controlled experiment, approval queue, and next best action. It does
+not publish, spend, or contact customers.
+
 ## Safety boundary
 
 AgencyOS is designed to be autonomous in low-risk work—research organization, drafting, monitoring, and recommendations—while people remain accountable for consequential, public, or sensitive actions. The prototype makes no claim of live client service, marketing-platform access, legal-business registration, or guaranteed marketing results.

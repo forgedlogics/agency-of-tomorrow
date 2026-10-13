@@ -18,3 +18,5 @@ public/file.svg
 public/globe.svg
 public/og.png
 public/window.svg
+agencyos.db
+.streamlit/secrets.toml
