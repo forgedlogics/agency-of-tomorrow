@@ -22,7 +22,7 @@ It is a creative marketing operating system that takes a focused business brief 
 
 ## See it in action
 
-The public experience is an interactive campaign studio. Enter a brand brief and it produces an immediate campaign package with a creative route, strategy, content system, experiment, measurement plan, and clickable review queue. Packages can be saved locally in the browser.
+The public experience is an interactive campaign studio. Enter a brand brief and it produces an immediate campaign package with a creative route, strategy, content system, experiment, measurement plan, and clickable review queue. With the private Visual Engine connected, the same brief can also produce an original campaign image—never a fixed stock mockup. Packages can be saved locally in the browser.
 
 - [Open AgencyOS](https://forgedlogics.github.io/agency-of-tomorrow/)
 
@@ -62,6 +62,12 @@ streamlit run app.py
 ```
 
 The app creates and stores a structured campaign package: strategy, content drafts, controlled experiment, approval queue, and next best action. The API key is intentionally excluded from Git.
+
+## Connect live visual generation to the public site
+
+GitHub Pages is deliberately static, so it cannot safely hold an OpenAI API key. The included `api_server.py` is the private bridge between the homepage and the OpenAI image API: it receives the visitor’s brief, creates the image prompt on the server, and returns that one generated visual to the visitor.
+
+Deploy `api_server.py` to a Python service (the included `render.yaml` is ready for Render), set `OPENAI_API_KEY` in that service’s secret settings, then set the deployed API URL in `agencyos-config.js`. Never put the API key in `agencyos-config.js`, GitHub Pages, or browser JavaScript.
 
 ## The line AgencyOS will not cross
 
