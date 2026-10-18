@@ -12,7 +12,7 @@ from collections import defaultdict
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from google import genai
+
 
 DEFAULT_ORIGINS = "https://forgedlogics.github.io,http://localhost:4177,http://127.0.0.1:4177"
 allowed_origins = [item.strip() for item in os.getenv("AGENCYOS_ALLOWED_ORIGINS", DEFAULT_ORIGINS).split(",")]
@@ -80,6 +80,7 @@ def generate_visual(brief: VisualBrief, request: Request) -> dict[str, str]:
     check_rate_limit(request)
     prompt = visual_prompt(brief)
     try:
+        from google import genai
         client = genai.Client(api_key=api_key)
         response = client.models.generate_content(
             model=os.getenv("GEMINI_IMAGE_MODEL", "gemini-3.1-flash-image"),
@@ -105,3 +106,37 @@ def generate_visual(brief: VisualBrief, request: Request) -> dict[str, str]:
         raise
     except Exception as error:
         raise HTTPException(status_code=502, detail="AgencyOS could not generate a visual concept. Please try again.") from error
+
+
+class PlanningBrief(BaseModel):
+    name: str = Field(min_length=1, max_length=100)
+    brand: str = Field(min_length=1, max_length=100)
+    offer: str = Field(min_length=1, max_length=160)
+    audience: str = Field(min_length=1, max_length=300)
+    goal: str = Field(min_length=1, max_length=500)
+    channel: str = Field(min_length=1, max_length=100)
+    rules: str = Field(default="", max_length=2000)
+
+
+@app.post("/plan-campaign")
+def plan_campaign(brief: PlanningBrief, request: Request) -> dict:
+    if not os.getenv("OPENAI_API_KEY"):
+        raise HTTPException(status_code=503, detail="The AI planner is not configured. Starter templates are available without a server.")
+    check_rate_limit(request)
+    from agencyos.brain import build_campaign_package
+    from agencyos.models import CampaignBrief
+    try:
+        package = build_campaign_package(
+            CampaignBrief(brand=brief.brand, goal=brief.goal, objective="Create a marketing campaign"),
+            {"audience": brief.audience, "offer": brief.offer, "rules": brief.rules,
+             "preferred_channel": brief.channel, "campaign_name": brief.name},
+        )
+        items = package.get("content_plan") if isinstance(package, dict) else None
+        if not isinstance(items, list) or not items or any(
+            not isinstance(item, dict) or not isinstance(item.get("draft"), str)
+            for item in items
+        ):
+            raise ValueError("Incomplete campaign package")
+        return package
+    except Exception as error:
+        raise HTTPException(status_code=502, detail="The AI planner could not create a complete campaign. Please try again.") from error
