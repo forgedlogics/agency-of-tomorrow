@@ -148,7 +148,19 @@ def plan_campaign(brief: PlanningBrief, request: Request) -> dict:
             raise ValueError("Incomplete campaign package")
         return package
     except Exception as error:
-        raise HTTPException(status_code=502, detail="The AI planner could not create a complete campaign. Please try again.") from error
+        provider_status = getattr(error, "status_code", None)
+        if provider_status == 401:
+            detail = "The planning service API key was rejected. The app owner needs to update OPENAI_API_KEY in Render."
+        elif provider_status == 429:
+            detail = "The AI provider reports a quota or rate limit. The app owner should check API billing and usage limits before retrying."
+        elif provider_status in (400, 403, 404):
+            detail = "The configured AI model is unavailable for this API project. The app owner should check model access and AGENCYOS_MODEL in Render."
+        else:
+            detail = "The AI planner could not create a complete campaign. Please try again."
+        # Record only exception classification, never credentials, briefs, or response bodies.
+        import logging
+        logging.getLogger(__name__).warning("Planning failed: type=%s provider_status=%s", type(error).__name__, provider_status)
+        raise HTTPException(status_code=502, detail=detail) from error
 
 
 # Serve only the public app assets, never the repository or its databases.

@@ -57,3 +57,16 @@ class PlanningAPI(unittest.TestCase):
     def test_private_files_are_not_served(self):
         for path in ['/agencyos.db', '/api_server.py', '/.env', '/requirements.txt', '/agencyos/store.py']:
             self.assertEqual(self.client.get(path).status_code, 404)
+
+    def test_provider_errors_have_safe_actionable_messages(self):
+        class ProviderError(Exception):
+            pass
+        for status, expected in [(401, 'key was rejected'), (429, 'quota or rate limit'), (403, 'model is unavailable')]:
+            error = ProviderError('private provider response must not be returned')
+            error.status_code = status
+            api_server.recent_requests.clear()
+            with patch.dict(os.environ, {'OPENAI_API_KEY': 'test-only'}), patch('agencyos.brain.build_campaign_package', side_effect=error):
+                response = self.client.post('/plan-campaign', json=BRIEF)
+                self.assertEqual(response.status_code, 502)
+                self.assertIn(expected, response.json()['detail'])
+                self.assertNotIn('private provider response', response.text)
