@@ -111,3 +111,20 @@ python -m unittest discover -s tests
 
 API tests require `httpx` in addition to `requirements.txt` (install with
 `python -m pip install httpx`). Tests mock the model; no paid model calls are made.
+
+### Deploy the complete app on Render
+
+The Render blueprint now serves both the campaign workspace and API from one
+service. Open [Deploy to Render](https://render.com/deploy?repo=https://github.com/forgedlogics/agency-of-tomorrow),
+select the free service, and enter `OPENAI_API_KEY` in Render's secret field.
+The service serves the workspace at `/` and automatically connects its AI endpoint;
+no frontend URL edit is needed. `GET /health` reports planning and visual readiness
+separately without exposing credentials. Add `GEMINI_API_KEY` separately only if
+visual generation is needed. Free services may need time to wake after inactivity.
+
+The GitHub Pages workspace continues to work independently with starter templates.
+To enable AI there too, set its public `AGENCYOS_API_URL` to the deployed Render
+origin. Both versions save campaign data in the visitor's browser, separately for
+each origin. Export/import a backup to move data between them.
+
+Install `requirements-dev.txt` to run API tests. No real model calls are used in tests.

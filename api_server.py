@@ -7,17 +7,19 @@ Set GEMINI_API_KEY only in the server environment.
 import base64
 import os
 import time
+from pathlib import Path
 from collections import defaultdict
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, Response
 from pydantic import BaseModel, Field
 
 
 DEFAULT_ORIGINS = "https://forgedlogics.github.io,http://localhost:4177,http://127.0.0.1:4177"
 allowed_origins = [item.strip() for item in os.getenv("AGENCYOS_ALLOWED_ORIGINS", DEFAULT_ORIGINS).split(",")]
 
-app = FastAPI(title="AgencyOS Visual Engine")
+app = FastAPI(title="AgencyOS API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
@@ -61,14 +63,18 @@ def check_rate_limit(request: Request) -> None:
     now = time.time()
     history = [timestamp for timestamp in recent_requests[address] if now - timestamp < RATE_WINDOW_SECONDS]
     if len(history) >= RATE_LIMIT:
-        raise HTTPException(status_code=429, detail="Visual generation limit reached. Please try again shortly.")
+        raise HTTPException(status_code=429, detail="Generation limit reached. Please try again in 10 minutes.")
     history.append(now)
     recent_requests[address] = history
 
 
 @app.get("/health")
 def health() -> dict[str, bool]:
-    return {"ready": bool(os.getenv("GEMINI_API_KEY"))}
+    return {
+        "ready": True,
+        "planning_ready": bool(os.getenv("OPENAI_API_KEY")),
+        "visual_ready": bool(os.getenv("GEMINI_API_KEY")),
+    }
 
 
 @app.post("/generate-visual")
@@ -133,10 +139,35 @@ def plan_campaign(brief: PlanningBrief, request: Request) -> dict:
         )
         items = package.get("content_plan") if isinstance(package, dict) else None
         if not isinstance(items, list) or not items or any(
-            not isinstance(item, dict) or not isinstance(item.get("draft"), str)
+            not isinstance(item, dict) or any(
+                not isinstance(item.get(key), str) or not item[key].strip()
+                for key in ("channel", "hook", "draft")
+            )
             for item in items
         ):
             raise ValueError("Incomplete campaign package")
         return package
     except Exception as error:
         raise HTTPException(status_code=502, detail="The AI planner could not create a complete campaign. Please try again.") from error
+
+
+# Serve only the public app assets, never the repository or its databases.
+PUBLIC_ROOT = Path(__file__).resolve().parent
+PUBLIC_ASSETS = {"index.html", "workspace.html", "workspace.js", "workspace.css"}
+
+
+@app.get("/")
+def workspace() -> FileResponse:
+    return FileResponse(PUBLIC_ROOT / "workspace.html")
+
+
+@app.get("/agencyos-config.js")
+def public_configuration() -> Response:
+    return Response("window.AGENCYOS_API_URL = window.location.origin;", media_type="application/javascript", headers={"Cache-Control": "no-store"})
+
+
+@app.get("/{asset}")
+def public_asset(asset: str) -> FileResponse:
+    if asset not in PUBLIC_ASSETS:
+        raise HTTPException(status_code=404, detail="Not found")
+    return FileResponse(PUBLIC_ROOT / asset)

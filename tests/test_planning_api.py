@@ -20,7 +20,7 @@ class PlanningAPI(unittest.TestCase):
         self.assertEqual(self.client.post('/plan-campaign', json={**BRIEF, 'brand': ''}).status_code, 422)
 
     def test_success_and_no_server_persistence(self):
-        package = {'business_hypothesis': 'Test the offer', 'content_plan': [{'draft': 'A draft'}]}
+        package = {'business_hypothesis': 'Test the offer', 'content_plan': [{'channel': 'Email', 'hook': 'Introducing Aster', 'draft': 'A draft'}]}
         with patch.dict(os.environ, {'OPENAI_API_KEY': 'test-only'}), patch('agencyos.brain.build_campaign_package', return_value=package) as planner:
             response = self.client.post('/plan-campaign', json=BRIEF)
             self.assertEqual(response.status_code, 200)
@@ -33,6 +33,27 @@ class PlanningAPI(unittest.TestCase):
                 self.assertEqual(self.client.post('/plan-campaign', json=BRIEF).status_code, 502)
 
     def test_rate_limit(self):
-        with patch.dict(os.environ, {'OPENAI_API_KEY': 'test-only'}), patch('agencyos.brain.build_campaign_package', return_value={'content_plan':[{'draft':'ok'}]}):
+        with patch.dict(os.environ, {'OPENAI_API_KEY': 'test-only'}), patch('agencyos.brain.build_campaign_package', return_value={'content_plan':[{'channel':'Email','hook':'A hook','draft':'ok'}]}):
             codes = [self.client.post('/plan-campaign', json=BRIEF).status_code for _ in range(4)]
             self.assertEqual(codes, [200, 200, 200, 429])
+
+    def test_health_reports_capabilities_without_keys(self):
+        with patch.dict(os.environ, {'OPENAI_API_KEY': '', 'GEMINI_API_KEY': ''}):
+            self.assertEqual(self.client.get('/health').json(), {'ready': True, 'planning_ready': False, 'visual_ready': False})
+        with patch.dict(os.environ, {'OPENAI_API_KEY': 'test-only', 'GEMINI_API_KEY': ''}):
+            self.assertTrue(self.client.get('/health').json()['planning_ready'])
+
+    def test_incomplete_content_fields_are_rejected(self):
+        for item in [{'draft': 'text'}, {'channel': 'Email', 'hook': '', 'draft': 'text'}, {'channel': 42, 'hook': 'Hook', 'draft': 'text'}]:
+            with patch.dict(os.environ, {'OPENAI_API_KEY': 'test-only'}), patch('agencyos.brain.build_campaign_package', return_value={'content_plan': [item]}):
+                api_server.recent_requests.clear()
+                self.assertEqual(self.client.post('/plan-campaign', json=BRIEF).status_code, 502)
+
+    def test_serves_workspace_and_same_origin_configuration(self):
+        self.assertIn('Campaign workspace', self.client.get('/').text)
+        self.assertIn('window.location.origin', self.client.get('/agencyos-config.js').text)
+        self.assertEqual(self.client.get('/workspace.js').status_code, 200)
+
+    def test_private_files_are_not_served(self):
+        for path in ['/agencyos.db', '/api_server.py', '/.env', '/requirements.txt', '/agencyos/store.py']:
+            self.assertEqual(self.client.get(path).status_code, 404)
