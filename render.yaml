@@ -1,11 +1,15 @@
 services:
   - type: web
-    name: agencyos-visual-engine
+    name: agencyos-api
     runtime: python
+    plan: free
+    healthCheckPath: /health
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn api_server:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: GEMINI_API_KEY
+      - key: OPENAI_API_KEY
         sync: false
+      - key: AGENCYOS_MODEL
+        value: gpt-5-mini
       - key: AGENCYOS_ALLOWED_ORIGINS
         value: https://forgedlogics.github.io

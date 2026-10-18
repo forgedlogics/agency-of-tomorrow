@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgencyOS — Campaign workspace</title>
+    <meta
+      name="description"
+      content="Plan campaigns, write content, and organize your marketing in one workspace."
+    />
+    <link rel="stylesheet" href="workspace.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="logo" href="index.html"
+        >agency<span>os</span><i>WORKSPACE</i></a
+      >
+      <nav aria-label="Workspace">
+        <button data-view="overview" class="active">
+          ◈ <span>Overview</span></button
+        ><button data-view="campaigns">▦ <span>Campaigns</span></button
+        ><button data-view="calendar">▤ <span>Content calendar</span></button
+        ><button data-view="brand">◎ <span>Brand profile</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="dot"></span> Browser workspace
+        <p>Saved on this device.<br />Export a backup to keep your work.</p>
+        <button id="backup" class="quiet">Export workspace ↗</button
+        ><label class="quiet import"
+          >Import backup<input
+            id="import"
+            type="file"
+            accept="application/json"
+            hidden
+        /></label>
+      </div>
+    </aside>
+    <div class="shell">
+      <header>
+        <div>
+          <span class="eyebrow">YOUR MARKETING, IN MOTION</span>
+          <h1 id="pageTitle">Overview</h1>
+        </div>
+        <button class="primary" id="newCampaign">＋ New campaign</button>
+      </header>
+      <main id="main"></main>
+      <p id="notice" role="status" aria-live="polite"></p>
+      <footer>
+        AgencyOS · Plans and drafts for human review. Scheduling records your
+        plan; it does not publish.
+      </footer>
+    </div>
+    <dialog id="campaignDialog" aria-labelledby="campaignDialogTitle">
+      <form id="campaignForm">
+        <div class="dialog-head">
+          <div>
+            <span class="eyebrow">FROM IDEA TO CAMPAIGN</span>
+            <h2 id="campaignDialogTitle">What are we working on?</h2>
+          </div>
+          <button
+            type="button"
+            class="quiet"
+            id="closeDialog"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+        </div>
+        <label
+          >Campaign name<input
+            name="name"
+            required
+            maxlength="100"
+            placeholder="The autumn collection"
+        /></label>
+        <div class="form-grid">
+          <label
+            >Business / brand<input
+              name="brand"
+              required
+              maxlength="100"
+              placeholder="Your brand" /></label
+          ><label
+            >What are you promoting?<input
+              name="offer"
+              required
+              maxlength="160"
+              placeholder="A product, service, or collection"
+          /></label>
+        </div>
+        <label
+          >Who is it for?<input
+            name="audience"
+            required
+            maxlength="300"
+            placeholder="Describe your ideal customer" /></label
+        ><label
+          >What do you want to achieve?<textarea
+            name="goal"
+            required
+            maxlength="500"
+            placeholder="Build a waitlist for our next launch"
+          ></textarea>
+        </label>
+        <div class="form-grid">
+          <label
+            >Primary channel<select name="channel">
+              <option>Instagram</option>
+              <option>Email</option>
+              <option>LinkedIn</option>
+            </select></label
+          ><label>Target date<input name="date" type="date" required /></label>
+        </div>
+        <label
+          >Draft engine<select name="engine">
+            <option value="starter">Starter templates · no API needed</option>
+            <option value="ai">AI campaign planner</option>
+          </select></label
+        >
+        <p class="muted" id="engineStatus">
+          Starter templates use your brief to create editable starting points.
+        </p>
+        <p id="formError" role="alert"></p>
+        <button type="submit" class="primary" id="createButton">
+          Create campaign →
+        </button>
+      </form>
+    </dialog>
+    <script src="agencyos-config.js"></script>
+    <script src="workspace.js"></script>
+  </body>
+</html>

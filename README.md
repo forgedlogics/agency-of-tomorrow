@@ -71,3 +71,60 @@ Deploy `api_server.py` to a Python service (the included `render.yaml` is ready 
 ## The line AgencyOS will not cross
 
 AgencyOS can organize research, draft, monitor, recommend, and prepare actions. It does not publish, spend money, or contact customers without configured integrations and explicit human approval rules.
+
+## Campaign workspace
+
+Open `workspace.html` (or use **Open workspace** on the homepage) for the user-facing marketing app:
+
+- Create campaigns from your own brief, or load an editable jewelry example.
+- Generate clearly labeled starter templates without an API key.
+- Edit hooks and drafts, set content dates, and track draft and final review.
+- Save brand context for future briefs, search campaigns, and view planned content dates.
+- Download individual campaigns and export/import a complete JSON workspace backup.
+
+Run a local preview with `python3 -m http.server 4177`, then visit
+`http://localhost:4177/workspace.html`. Workspace data is stored in this browser on
+this origin. There are no shared accounts or cloud sync; export a backup before
+clearing browser data or switching devices. This app records planned dates and
+reviews; it does not publish content.
+
+### Optional AI campaign planning
+
+The workspace can call the existing model-backed planner through
+`POST /plan-campaign` on `api_server.py`. Set `OPENAI_API_KEY` on that server and
+set `AGENCYOS_API_URL` in `agencyos-config.js` to the server's HTTPS origin. Select
+**AI campaign planner** when creating a campaign. API keys stay on the server.
+The endpoint returns drafts to the browser and does not write visitors' briefs to
+the shared local campaign database. The visual engine remains available separately.
+
+The server's in-memory rate limit is suitable for a small demo, not a paid public
+service. Before a wider launch, add authenticated accounts, durable per-user storage,
+and durable usage limits. Deploy the frontend to GitHub Pages and the Python API
+separately; GitHub Pages cannot execute Python.
+
+### Verification
+
+```sh
+node --check workspace.js
+python -m unittest discover -s tests
+```
+
+API tests require `httpx` in addition to `requirements.txt` (install with
+`python -m pip install httpx`). Tests mock the model; no paid model calls are made.
+
+### Deploy the complete app on Render
+
+The Render blueprint now serves both the campaign workspace and API from one
+service. Open [Deploy to Render](https://render.com/deploy?repo=https://github.com/forgedlogics/agency-of-tomorrow),
+select the free service, and enter `OPENAI_API_KEY` in Render's secret field.
+The service serves the workspace at `/` and automatically connects its AI endpoint;
+no frontend URL edit is needed. `GET /health` reports planning and visual readiness
+separately without exposing credentials. Add `GEMINI_API_KEY` separately only if
+visual generation is needed. Free services may need time to wake after inactivity.
+
+The GitHub Pages workspace continues to work independently with starter templates.
+To enable AI there too, set its public `AGENCYOS_API_URL` to the deployed Render
+origin. Both versions save campaign data in the visitor's browser, separately for
+each origin. Export/import a backup to move data between them.
+
+Install `requirements-dev.txt` to run API tests. No real model calls are used in tests.

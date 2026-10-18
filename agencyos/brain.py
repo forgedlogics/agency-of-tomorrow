@@ -22,7 +22,7 @@ def build_campaign_package(brief: CampaignBrief, brand_memory: dict[str, str]) -
         raise RuntimeError("OPENAI_API_KEY is not configured. Add it to Streamlit Secrets or your server environment before running AgencyOS.")
     from openai import OpenAI
 
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(api_key=api_key, timeout=90.0, max_retries=0)
     response = client.responses.create(
         model=os.getenv("AGENCYOS_MODEL", "gpt-5-mini"),
         instructions=SYSTEM_PROMPT,
