@@ -1,3 +1,9 @@
+## Campaign creation without API billing
+
+The public workspace no longer connects to an AI API, checks API health or sends briefs to a backend. New campaigns create three editable starter drafts in the browser. Open a campaign and choose **Prepare prompt for Claude / ChatGPT** to copy or download your brief and drafting instructions. Paste it into your own chat, then copy the revised text back into the campaign. Chat access and usage limits are managed by whichever service you use. Existing campaigns and backups remain compatible.
+
+The homepage visual tool now prepares a text prompt rather than calling an image API. Legacy server endpoints remain in the repository for optional future development; the public UI is disconnected from them. This change does not delete provider accounts, hosted services or stored secrets.
+
 # AgencyOS
 
 ## The AI automation agency that turns friction into operating systems
