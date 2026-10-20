@@ -128,3 +128,7 @@ origin. Both versions save campaign data in the visitor's browser, separately fo
 each origin. Export/import a backup to move data between them.
 
 Install `requirements-dev.txt` to run API tests. No real model calls are used in tests.
+
+### Luxury growth workspace
+
+Open **Luxury growth** in the workspace for four researched niche playbooks, a DIM-based copy/selection/CRM brief, discounted profit LTV and control-group measurement, and an editable campaign handoff with a tracked response URL. These planning tools work without an API key. Strategy saves locally and is included in workspace backups. See [research, curriculum mapping and model assumptions](LUXURY_STRATEGY.md). CRM execution, customer imports and statistical significance testing are not connected.

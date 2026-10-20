@@ -13,6 +13,7 @@ function validWorkspace(data) {
   const string = (v) => typeof v === "string";
   return (
     data &&
+    (!data.luxury || (typeof data.luxury === "object" && !Array.isArray(data.luxury) && Object.values(data.luxury).every(string))) &&
     data.brand &&
     typeof data.brand === "object" &&
     !Array.isArray(data.brand) &&
@@ -110,6 +111,7 @@ function render() {
     campaigns: "Campaigns",
     calendar: "Content calendar",
     brand: "Brand profile",
+    luxury: "Luxury growth",
   }[view];
   const main = $("#main");
   if (selected) {
@@ -135,6 +137,18 @@ function render() {
             .join("")
         : '<div class="empty">Create a campaign to start planning content.</div>');
   }
+  if (view === "luxury") Luxury.render(main, state.luxury || {}, {
+    escape: escapeHTML, download,
+    save: (data) => { state.luxury = data; if (!save()) throw Error("Storage unavailable. Download the strategy to keep it."); },
+    campaign: (d, url) => {
+      const c = { id: crypto.randomUUID(), name: d.campaign || "Private appointment pilot", brand: d.brandName,
+        goal: d.cta, audience: d.target, date: new Date().toISOString().slice(0,10), engine: "starter",
+        strategy: `Benefit: ${d.benefit}\nProof: ${d.support}\nVoice: ${d.character}\nSelection: ${d.segment}\nPermissions: ${d.dataSource}\nJourney: ${d.journey}\nCRM: ${d.automation}`,
+        nextAction: d.test || "Set a randomized holdout and agree on a success metric before sending.", checks: [false,false,false],
+        items: [{channel:"Email",hook:d.offer,draft:`Subject: ${d.offer}\n\n[Personalize with a verified customer preference.]\n\n${d.benefit}\n\n[Add verified evidence: ${d.support}]\n\n${d.cta}: ${url}\n\n[Add sender identity and opt-out details before sending.]`,date:new Date().toISOString().slice(0,10),approved:false}] };
+      state.campaigns.unshift(c); save(); view="campaigns"; selected=c.id; render(); announce("Luxury pilot created as an editable starter draft.");
+    }
+  });
   if (view === "brand")
     main.innerHTML = `<form id="brandForm" class="card profile"><span class="eyebrow">THE CONTEXT BEHIND YOUR CONTENT</span><h2>Make it sound like you.</h2><p class="muted">These details prefill new briefs. Your rules also go to the AI planner when connected.</p>${[
       ["brand", "Business / brand"],
