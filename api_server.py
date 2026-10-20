@@ -175,7 +175,7 @@ def workspace() -> FileResponse:
 
 @app.get("/agencyos-config.js")
 def public_configuration() -> Response:
-    return Response("window.AGENCYOS_API_URL = window.location.origin;", media_type="application/javascript", headers={"Cache-Control": "no-store"})
+    return Response('window.AGENCYOS_API_URL = "";', media_type="application/javascript", headers={"Cache-Control": "no-store"})
 
 
 @app.get("/{asset}")

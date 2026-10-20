@@ -49,9 +49,9 @@ class PlanningAPI(unittest.TestCase):
                 api_server.recent_requests.clear()
                 self.assertEqual(self.client.post('/plan-campaign', json=BRIEF).status_code, 502)
 
-    def test_serves_workspace_and_same_origin_configuration(self):
+    def test_serves_workspace_with_api_disconnected(self):
         self.assertIn('Campaign workspace', self.client.get('/').text)
-        self.assertIn('window.location.origin', self.client.get('/agencyos-config.js').text)
+        self.assertIn('window.AGENCYOS_API_URL = "";', self.client.get('/agencyos-config.js').text)
         self.assertEqual(self.client.get('/workspace.js').status_code, 200)
 
     def test_private_files_are_not_served(self):

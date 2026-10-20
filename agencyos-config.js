@@ -1,2 +1,2 @@
-// Public API origin only. API keys stay in Render secret settings.
-window.AGENCYOS_API_URL = "https://agencyos-api-9j96.onrender.com";
+// AgencyOS runs locally in the browser. No API service is connected.
+window.AGENCYOS_API_URL = "";

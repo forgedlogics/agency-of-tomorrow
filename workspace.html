@@ -112,23 +112,21 @@
             </select></label
           ><label>Target date<input name="date" type="date" required /></label>
         </div>
-        <label
-          >Draft engine<select name="engine">
-            <option value="starter">Starter templates · no API needed</option>
-            <option value="ai">AI campaign planner</option>
-          </select></label
-        >
-        <p class="muted" id="engineStatus">
-          Starter templates use your brief to create editable starting points.
-        </p>
+        <p class="muted">Creates three editable starter drafts on this device. No API key or API billing needed. After creating, optionally prepare a prompt for your own Claude or ChatGPT chat.</p>
         <p id="formError" role="alert"></p>
         <button type="submit" class="primary" id="createButton">
           Create campaign →
         </button>
       </form>
     </dialog>
-    <script src="agencyos-config.js"></script>
+    <dialog id="handoffDialog" aria-labelledby="handoffTitle">
+      <div class="dialog-head"><h2 id="handoffTitle">Your optional AI handoff</h2><button class="quiet" id="closeHandoff" aria-label="Close prompt">✕</button></div>
+      <p>Review the brief before sharing it with your chat. This app does not connect to an AI provider.</p>
+      <label>Campaign prompt<textarea id="handoffPrompt" rows="16" readonly></textarea></label>
+      <div class="actions"><button class="primary" id="copyPrompt">Copy prompt</button><button class="secondary" id="downloadPrompt">Download prompt</button></div>
+      <p id="handoffStatus" role="status"></p>
+    </dialog>
     <script src="luxury.js?v=20261020"></script>
-    <script src="workspace.js?v=luxury-20261020"></script>
+    <script src="workspace.js?v=no-api-20261020"></script>
   </body>
 </html>

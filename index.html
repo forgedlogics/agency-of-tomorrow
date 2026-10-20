@@ -49,7 +49,7 @@
               <div class="system"><b>PRIORITY SYSTEM</b><p id="priority"></p><div class="flow" id="priorityFlow"></div></div>
               <div class="system"><b>INTELLIGENCE LAYER</b><p id="intelligence"></p><div class="flow"><span class="node">MARKET SIGNALS</span><span class="node">CUSTOMER CONTEXT</span><span class="node">NEXT ACTION</span></div></div>
               <div class="system wide"><b>CONTENT + DEMAND ENGINE</b><p id="content"></p><div class="flow"><span class="node">RESEARCH</span><span class="node">DRAFT</span><span class="node">REVIEW</span><span class="node">SCHEDULE</span><span class="node">MEASURE</span></div></div>
-              <div class="system wide"><b>VISUAL CAMPAIGN CONCEPT</b><p class="note">Create a one-of-one visual from this exact business brief. It is generated only when you request it.</p><button class="visual-action" id="generateVisual" type="button">GENERATE A VISUAL CAMPAIGN CONCEPT →</button><span class="visual-status" id="visualStatus"></span><img class="visual-image" id="visualImage" alt="Generated visual campaign concept" hidden></div>
+              <div class="system wide"><b>VISUAL CAMPAIGN CONCEPT</b><p class="note">Prepare a visual prompt from your brief, then use your preferred creative tool.</p><button class="visual-action" id="generateVisual" type="button">PREPARE A VISUAL PROMPT →</button><span class="visual-status" id="visualStatus"></span><img class="visual-image" id="visualImage" alt="Generated visual campaign concept" hidden></div>
               <div class="system"><b>WHAT AGENCYOS MEASURES</b><p id="measure"></p></div>
               <div class="system"><b>HUMAN APPROVALS</b><div id="approvals"></div></div>
             </div>
@@ -92,14 +92,10 @@
       $('#visualImage').hidden=true;$('#visualImage').removeAttribute('src');$('#visualStatus').textContent='';
       window.scrollTo({top:$('#blueprint').getBoundingClientRect().top+scrollY-92,behavior:'smooth'});
     }
-    async function generateVisual(){
-      const button=$('#generateVisual'),status=$('#visualStatus'),endpoint=(window.AGENCYOS_API_URL||'').replace(/\/$/,'');
-      if(!endpoint){status.textContent='The private Visual Engine is not connected yet. Deploy the included API and set its URL in agencyos-config.js.';return}
-      button.disabled=true;button.textContent='AGENCYOS IS CREATING YOUR VISUAL…';status.textContent='Turning this business brief into an original visual concept…';
-      try{
-        const response=await fetch(endpoint+'/generate-visual',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({brand:value('business'),offer:value('offer'),goal:value('goal'),audience:value('audience'),signal:value('stack')})});
-        const data=await response.json();if(!response.ok)throw new Error(data.detail||'Visual generation failed.');$('#visualImage').src=data.image_data_url;$('#visualImage').hidden=false;status.textContent='Original visual concept ready for review.';
-      }catch(error){status.textContent=error.message||'AgencyOS could not generate a visual concept.'}finally{button.disabled=false;button.textContent='GENERATE A NEW VISUAL CONCEPT →'}
+    function generateVisual(){
+      const prompt='Create a luxury campaign visual concept for '+value('business')+'. Offer: '+value('offer')+'. Audience: '+value('audience')+'. Goal: '+value('goal')+'. Use real product references supplied by the brand. Do not invent product details or claims. Suggest composition, lighting, styling and a shot list.';
+      $('#visualStatus').textContent=prompt;
+      $('#generateVisual').textContent='VISUAL PROMPT READY — SELECT AND COPY BELOW';
     }
     $('#brief').onsubmit=event=>{event.preventDefault();buildBlueprint()};$('#generateVisual').onclick=generateVisual;
     $('#save').onclick=()=>{localStorage.setItem('agencyos-blueprint',JSON.stringify(Object.fromEntries(fields.map(key=>[key,value(key)]))));$('#saved').textContent='SAVED ON THIS DEVICE'};
