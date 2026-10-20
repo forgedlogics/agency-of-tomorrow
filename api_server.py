@@ -165,7 +165,7 @@ def plan_campaign(brief: PlanningBrief, request: Request) -> dict:
 
 # Serve only the public app assets, never the repository or its databases.
 PUBLIC_ROOT = Path(__file__).resolve().parent
-PUBLIC_ASSETS = {"index.html", "workspace.html", "workspace.js", "workspace.css"}
+PUBLIC_ASSETS = {"index.html", "workspace.html", "workspace.js", "workspace.css", "luxury.js"}
 
 
 @app.get("/")

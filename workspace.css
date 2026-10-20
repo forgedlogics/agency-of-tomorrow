@@ -458,3 +458,10 @@ input::placeholder, textarea::placeholder { color: #9b958b; }
 button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid var(--gold); }
 input[type="checkbox"] { accent-color: var(--gold); }
 ::selection { background: #785e2d; color: #fff; }
+
+/* Luxury strategy tools share the workspace palette. */
+#luxuryForm > .card, #main > .card { margin-bottom: 20px; }
+.luxury-roadmap { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
+.luxury-roadmap article { border-top:1px solid var(--line); padding-top:16px; }
+#nicheDetail { margin:20px 0; }
+#luxuryResults { margin-top:20px; }
