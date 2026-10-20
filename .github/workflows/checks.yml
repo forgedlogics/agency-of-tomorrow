@@ -20,3 +20,6 @@ jobs:
 
       - run: node --check luxury.js
       - run: node --test tests/luxury.test.cjs
+
+      - run: node --check channels.js
+      - run: node --test tests/channels.test.cjs
