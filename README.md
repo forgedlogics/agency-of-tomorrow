@@ -148,3 +148,7 @@ Open **Channel studio** for a shared campaign brief and four tabs:
 - Results: manually enter deliveries, unique clickers, conversions, attributed revenue and opt-outs to calculate reporting rates. No analytics account is connected.
 
 One active channel workspace is stored in the browser and included in the full backup. Export channel data before switching client work. Existing campaign context can be copied into it without modifying the campaign. Uploads are limited to 750 KB; email delivery should use hosted/attached images. External image hosts may prevent canvas export; upload the image directly if that happens. Generated HTML is a draft for testing in your sending/web platform; it does not configure sender authentication, a mailing list, unsubscribe headers, ads, publishing or search indexing. No AI API is called.
+
+### Public site and workspace release - October 20, 2026
+
+The homepage now describes the implemented browser-based email, social and website/SEO creation workflow and its export limits. The workspace overview links directly to Channel Studio. Both URLs remain unchanged. No automatic sending, social publishing or paid AI API is connected.
