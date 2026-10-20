@@ -14,6 +14,7 @@ function validWorkspace(data) {
   return (
     data &&
     (!data.luxury || (typeof data.luxury === "object" && !Array.isArray(data.luxury) && Object.values(data.luxury).every(string))) &&
+    (!data.marketing || (typeof data.marketing === "object" && !Array.isArray(data.marketing) && Object.values(data.marketing).every(string))) &&
     data.brand &&
     typeof data.brand === "object" &&
     !Array.isArray(data.brand) &&
@@ -110,6 +111,7 @@ function render() {
     calendar: "Content calendar",
     brand: "Brand profile",
     luxury: "Luxury growth",
+    channels: "Channel studio",
   }[view];
   const main = $("#main");
   if (selected) {
@@ -135,6 +137,7 @@ function render() {
             .join("")
         : '<div class="empty">Create a campaign to start planning content.</div>');
   }
+  if (view === "channels") Channels.render(main, state.marketing || {}, state.brand, state.campaigns, {download, save: data => {state.marketing=data;return save();}});
   if (view === "luxury") Luxury.render(main, state.luxury || {}, {
     escape: escapeHTML, download,
     save: (data) => { state.luxury = data; if (!save()) throw Error("Storage unavailable. Download the strategy to keep it."); },

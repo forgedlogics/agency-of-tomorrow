@@ -138,3 +138,13 @@ Install `requirements-dev.txt` to run API tests. No real model calls are used in
 ### Luxury growth workspace
 
 Open **Luxury growth** in the workspace for four researched niche playbooks, a DIM-based copy/selection/CRM brief, discounted profit LTV and control-group measurement, and an editable campaign handoff with a tracked response URL. These planning tools work without an API key. Strategy saves locally and is included in workspace backups. See [research, curriculum mapping and model assumptions](LUXURY_STRATEGY.md). CRM execution, customer imports and statistical significance testing are not connected.
+
+### Channel Studio
+
+Open **Channel studio** for a shared campaign brief and four tabs:
+- Email: sender, audience segment, eight email/flow types, subject/preheader, logo and hero, alt text, supporting items/proof, CTA/footer, sandboxed preview and HTML export. Flow suggestions are planning templates; they do not connect to store events or send messages.
+- Instagram + Facebook: captions, CTA placement and planned date; render/export 1080x1350, 1080x1080 or 1200x630 PNGs using a brand-owned image or typography.
+- Website + SEO: search intent, slug, title/description, headings, FAQs, internal-link brief, canonical URL and UTM builder; export a standalone landing-page draft and SEO brief.
+- Results: manually enter deliveries, unique clickers, conversions, attributed revenue and opt-outs to calculate reporting rates. No analytics account is connected.
+
+One active channel workspace is stored in the browser and included in the full backup. Export channel data before switching client work. Existing campaign context can be copied into it without modifying the campaign. Uploads are limited to 750 KB; email delivery should use hosted/attached images. External image hosts may prevent canvas export; upload the image directly if that happens. Generated HTML is a draft for testing in your sending/web platform; it does not configure sender authentication, a mailing list, unsubscribe headers, ads, publishing or search indexing. No AI API is called.
