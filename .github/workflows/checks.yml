@@ -23,3 +23,6 @@ jobs:
 
       - run: node --check channels.js
       - run: node --test tests/channels.test.cjs
+
+      - run: node --check growth.js
+      - run: node --test tests/growth.test.cjs

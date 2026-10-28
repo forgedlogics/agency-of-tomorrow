@@ -465,3 +465,8 @@ input[type="checkbox"] { accent-color: var(--gold); }
 .luxury-roadmap article { border-top:1px solid var(--line); padding-top:16px; }
 #nicheDetail { margin:20px 0; }
 #luxuryResults { margin-top:20px; }
+
+#growthForm {
+  display: grid;
+  gap: 20px;
+}

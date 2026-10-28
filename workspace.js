@@ -13,6 +13,7 @@ function validWorkspace(data) {
   const string = (v) => typeof v === "string";
   return (
     data &&
+    (!data.growth || (typeof data.growth === "object" && !Array.isArray(data.growth) && Object.values(data.growth).every(string))) &&
     (!data.luxury || (typeof data.luxury === "object" && !Array.isArray(data.luxury) && Object.values(data.luxury).every(string))) &&
     (!data.marketing || (typeof data.marketing === "object" && !Array.isArray(data.marketing) && Object.values(data.marketing).every(string))) &&
     data.brand &&
@@ -112,6 +113,7 @@ function render() {
     brand: "Brand profile",
     luxury: "Luxury growth",
     channels: "Channel studio",
+    growth: "Growth planner",
   }[view];
   const main = $("#main");
   if (selected) {
@@ -137,6 +139,16 @@ function render() {
             .join("")
         : '<div class="empty">Create a campaign to start planning content.</div>');
   }
+  if (view === "growth") Growth.render(main, state.growth || {}, {
+    download,
+    save: data => { state.growth = data; return save(); },
+    channels: data => {
+      state.marketing = {...(state.marketing || {}), ...data};
+      if (!save()) throw Error("Channel handoff could not be saved. Export your workspace to keep changes.");
+      show("channels");
+      announce("Growth positioning copied to Channel Studio. Review the audience segment, content and destination before export.");
+    }
+  });
   if (view === "channels") Channels.render(main, state.marketing || {}, state.brand, state.campaigns, {download, save: data => {state.marketing=data;return save();}});
   if (view === "luxury") Luxury.render(main, state.luxury || {}, {
     escape: escapeHTML, download,

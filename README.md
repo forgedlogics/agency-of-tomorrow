@@ -152,3 +152,22 @@ One active channel workspace is stored in the browser and included in the full b
 ### Public site and workspace release - October 20, 2026
 
 The homepage now describes the implemented browser-based email, social and website/SEO creation workflow and its export limits. The workspace overview links directly to Channel Studio. Both URLs remain unchanged. No automatic sending, social publishing or paid AI API is connected.
+
+### Growth planner
+
+Open **Growth planner** to define TBSCCO positioning, compare competitors, record
+anonymized customer research and plan a connected discovery-to-consultation journey.
+Load the editable jewelry example to plan a client campaign. Record actual inquiry,
+qualification, booking and sales counts for one sequential cohort; the calculator
+reports conversion rates and cost per booking, with unavailable rates for zero denominators.
+Save plans in the existing workspace backup, download a Markdown pilot brief, or
+explicitly copy selected positioning fields into Channel Studio. The handoff replaces
+its goal, headline, proof, CTA and test plan after confirmation; other content stays
+in place and needs review for consistency. This is a planning tool with manual results,
+not a live chatbot, CRM integration or automatic follow-up service.
+
+The approach adapts connected journeys, conversational shopping and human creative
+judgment from the [Amazon unBoxed 2026 official recap](https://advertising.amazon.com/library/news/unboxed-2026-news-announcements)
+and niche demos from [Neil Patel's agency video](https://www.youtube.com/watch?v=4EVAooC1htc),
+alongside customer research and TBSCCO. The video was reviewed through its author-provided
+description and chapters. No Amazon integration or vendor subscription is required.
