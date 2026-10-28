@@ -470,3 +470,14 @@ input[type="checkbox"] { accent-color: var(--gold); }
   display: grid;
   gap: 20px;
 }
+
+.workspace-steps {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+.workspace-steps h3 { font-size: 22px; margin: 10px 0; }
+.workspace-steps p { max-width: 75ch; color: var(--muted); }
+.overview-extra { margin-top: 20px; }
+.overview-extra summary { cursor: pointer; font-weight: 650; }
